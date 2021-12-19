@@ -1,0 +1,40 @@
+
+<table class="rwd-table">
+  <tr >
+    <th>No.</th>
+    <th>Brand image</th>
+    <th>Brand name</th>
+    <th>Options</th>
+  </tr>
+  {{#each brand}}
+  <tr>
+    <td data-th="Movie Title">{{@index}}</td>
+    <td data-th="Genre"><img src="/brand-images/{{this._id}}.jpg" alt="" style="width: 5rem;"></td>
+    <td data-th="Year">{{this.brandName}}</td>
+    <td data-th="Gross"><button type="button" class="btn btn-danger">Delete</button></td>
+  </tr>
+  {{/each}}
+  
+  
+</table>
+
+
+
+<h5 class="ml-3">Add New Brand</h5>
+
+<form action="/admin/addBrand" method="post" enctype="multipart/form-data">
+  <div class="form-row col-12" style="display: flex;flex-direction: row;">
+    <div class="col-lg-6" >
+        <label for="">Brand name</label>
+      <input type="text" class="form-control" placeholder="Enter Brand name" name="brandName">
+      
+    </div>
+    
+    <div class="custom-file col-lg-6" style="margin-top: 2rem;">
+        
+        <input type="file" class="custom-file-input" id="customFile" class="mt-1" id="image" name="image">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+  </div>
+  <input type="submit" class="btn bg-danger">
+</form>

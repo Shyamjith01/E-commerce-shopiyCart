@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "E-buy",
+			"path": "."
+		},
+		{
+			"name": "Croppie-master",
+			"path": "..\\Croppie-master"
+		},
+		{
+			"name": "karma-master",
+			"path": "..\\..\\Documents\\project template\\karma-master"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Croppie-master"
+	}
+}

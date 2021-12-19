@@ -1,0 +1,38 @@
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+<div class="container">
+<div id='verify-otp' class="login-setup-section" style="margin-top: 11rem;margin-bottom: 9rem;">
+        <form action="/otp" method="post">
+        {{#if errOtp}}
+        <h6 style="color: red;">invalid Otp</h6>
+        {{/if}}
+        <h3 class="request-otp-header">Verify OTP</h3>
+        <div class="form-group login-label">
+            <label for="inputnumber">One Time Password</label>
+            <input type="number" class="form-control input-edit" placeholder='Enter OTP' id="number" name="otp" value="{Otp}">
+            <label class="pull-right resend-otp">Resend otp</label>
+        </div>
+        <input type="submit" value="Verify" class="btn btn-default btn-lg btn-block request-otp">   
+        </form>
+</div>
+</div>

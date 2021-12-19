@@ -1,0 +1,26 @@
+
+<h1 style="margin-left: auto;margin-right: auto;">Product list</h1>
+<table class="rwd-table">
+  <tr>
+    <th>image</th>
+    <th>Product name</th>
+    
+    <th>Catagory</th>
+    <th>Brand</th>
+    <th>Price</th>
+    <th>Options</th>
+  </tr>
+  {{#each product}}
+  <tr>
+    <td data-th="image"><img src="/product-images/{{this._id}}.jpg" alt="" style="width: 60px; height: auto;"></td> 
+    <td data-th="Product name">{{this.proName}}</td>
+    
+    <td data-th="Catagory">{{this.Catagories}}</td>
+    <td data-th="brand">{{this.brand}}</td>
+    <td data-th="Price">{{this.price}}</td>
+    <td><a href="/admin/editProduct/{{this._id}}"><span class="material-icons">edit</span></a><a href="/admin/delete-product/{{this._id}}" style="color: red;"><span class="material-icons">delete</span></a></td>
+  </tr>
+  {{/each}}
+</table>
+
+
