@@ -1,95 +1,100 @@
-
 <div class="col-lg-9" style="margin-left: auto;margin-right: auto;">
   <h4>Add Product</h4>
-<form action="/admin/add-product"  method="post" enctype="multipart/form-data" >
-  <div class="form-group">
-    <label for="exampleInputEmail1">Name of product</label>
-    <input type="text" name="proName" class="form-control"   placeholder="Enter name" maxlength="50">
-    <small id="emailHelp" class="form-text text-muted">enter your product name </small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Catagories</label>
-    <select class="form-select" aria-label="Default select example" name="Catagories">
+  <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name of product</label>
+      <input type="text" name="proName" class="form-control" placeholder="Enter name" >
+      <small id="emailHelp" class="form-text text-muted">enter your product name </small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Catagories</label>
+      <select class="form-select" aria-label="Default select example" name="Catagories">
         <option selected>Catagories</option>
         <option value="boys">boys</option>
         <option value="girls">girls</option>
-         <option value="Gents">Gents</option>
-         <option value="ladies">ladies</option>
-    </select> 
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Sub-Catagories</label>
-    <select class="form-select" aria-label="Default select example" name="subCatagories">
+        <option value="Gents">Gents</option>
+        <option value="ladies">ladies</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Sub-Catagories</label>
+      <select class="form-select" aria-label="Default select example" name="subCatagories">
         <option selected>select </option>
-        <option value="Sneakers">Sneakers</option>
-        <option value="running">running</option>
-        <option value="formal">formal</option>
-         <option value="boots">boots</option>
-    </select> 
-  </div>
-  <div class="form-group"> 
-    <label for="exampleInputPassword1">Brand</label>
-    <select class="form-select" aria-label="Default select example" name="brand">
+        {{#each categories}}
+        <option value="{{this.category}}">{{this.category}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Brand</label>
+      <select class="form-select" aria-label="Default select example" name="brand">
         <option selected>Brand</option>
         {{#each brands}}
         <option value="{{this.brandName}}">{{this.brandName}}</option>
         {{/each}}
-         
-    </select> 
-  </div>
-  
-  <div class="form-row">
-    <div class="col-4">
-      <label>Price</label>
-      <input type="text" name="price" "form-control" placeholder="price">
-    </div>
-    <div class="col">
-      <label>Tax</label>
-      <input type="text" name="tax" class="form-control" placeholder="tax">
-    </div>
-    <div class="col">
-      <label>landing Cost</label>
-      <input type="text" name="landingCost" class="form-control" placeholder="landing cost">
-    </div>
-  </div>
-  <br>
-  <div class="form-row">
-    <div class="col">
-      <label>color</label>
-      <input type="text" name="color" class="form-control" placeholder="Color">
-    </div>
-    <div class="form-group">
-    <label for="exampleInputPassword1">Size</label>
-      <select class="form-select" name="size" aria-label="Default select example" style="border;">
-        <option selected>select </option>
-        <option value="6">6</option>
-        <option value="7"> 7</option>
-         <option value="8">8</option>
-      </select> 
-    </div>
-  </div>
-  <br>
-  <div class="custom-file">
-    
-  <input type="file" name="image" class="custom-file-input" id="image">
-  <label class="custom-file-label" for="customFile">Choose file</label>
-</div>
-<div>
-  <img src="" alt="">
-</div>
 
-<br>
-  <div class="form-check">
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="col-4">
+        <label>Price</label>
+        <input type="text" name="price" "form-control" placeholder="price">
+      </div>
+      <div class="col">
+        <label>Stock</label>
+        <input type="text" name="stock" class="form-control" placeholder="stock">
+      </div>
+      <div class="col">
+        <label>landing Cost</label>
+        <input type="text" name="landingCost" class="form-control" placeholder="landing cost">
+      </div>
+    </div>
     <br>
-    <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <br>
+    <div class="form-row">
+      <div class="col">
+        <label>color</label>
+        <input type="text" name="color" class="form-control" placeholder="Color">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Size</label>
+        <select class="form-select" name="size" aria-label="Default select example" style="border;">
+          <option selected>select </option>
+          <option value="6">6</option>
+          <option value="7"> 7</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <h5 class="productImg_name">product images</h5>
+    <div class="custom-file">
+      
+      {{!-- 1st image --}}
+      <input type="file" name="image1" class="custom-file-input item-img" id="image1" accept="image/*">
+      <label class="custom-file-label" for="customFile">Choose image 1</label>
+      {{!-- 2nd image --}}
+      <input type="file" name="image2" class="custom-file-input item-img" id="image2"  accept="image/*">
+      <label class="custom-file-label" for="customFile" style="top: 3rem;">Choose image 2</label>
+      {{!-- 3rd image --}}
+      <input type="file" name="image3" class="custom-file-input item-img" id="image3" accept="image/*">
+      <label class="custom-file-label" for="customFile" style="top: 6rem;">Choose image 3</label>
+      
 
 
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="container text-center">
+        
+        <div class="form-check">
+          <br>
+          
+        </div>
+        <br>
 
-  <br>
-</form>
+
+
+        <button type="submit" style="margin-bottom: 5rem;" class="btn btn-primary">Submit</button>
+
+        <br>
+  </form>
 </div>

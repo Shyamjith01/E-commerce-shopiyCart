@@ -632,7 +632,7 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link span {
-  font-size: .85rem;
+  font-size: .75rem !important;
   display: inline
 }
 
@@ -1422,14 +1422,14 @@ a:focus {
   -webkit-box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5);
   box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5)
 }
-
+/* 
 .error {
   color: #5a5c69;
   font-size: 7rem;
   position: relative;
   line-height: 1;
   width: 12.5rem
-}
+} */
 
 @-webkit-keyframes noise-anim {
   0% {

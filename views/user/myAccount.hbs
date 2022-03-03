@@ -1,0 +1,230 @@
+
+<div class="container ">
+	<div class="row">
+		<div class="account_page" id="account">
+			<div class="profile col-lg-4" style="padding: 0;">
+				<div class="profile_head"></div>
+				<div class="profile_photo">
+					<img src="/images/icon-5359553_1280.png" alt="">
+				</div>
+				<h4>{{currentUser.fname}} {{currentUser.sname}}</h4>
+				<div class="user_detail">
+
+
+					<div>
+						<h6>Email :</h6><span>{{currentUser.email}}</span>
+					</div>
+					<div>
+						<h6>Number :</h6><span>+91 {{currentUser.number}}</span>
+					</div>
+				</div>
+				<div class="buttons">
+					<button id="edit">Edit</button>
+				</div>
+				<div class="options_button">
+
+					<a id="change_pass">change Password</a>
+
+				</div>
+			</div>
+			<div class="user_adress col-lg-4" id="adress_management">
+
+				<h4>Adress Management</h4>
+				<hr>
+				<div class="add_adress">
+					<div id="add">
+						<span class="material-icons">
+							add_circle_outline
+						</span>
+						<span>ADD NEW ADRESS</span>
+					</div>
+				</div>
+				<div class="current_adress">
+					{{#each adress}}
+					<div class="each_adress">
+						<span class="name_num">{{this.name}} - {{this.mobileNumber}}</span> 
+						<div class="del_icon">
+							<a href="/del_adress/{{this._id}}"><span class="material-icons">delete</span></a>
+						</div>
+						<br>
+						<span class="adress_list">{{this.adress}},Malappuram District ,Kerala
+							-{{this.pincode}} </span>
+						<div class="edit_icons">
+
+						</div>
+					</div>
+					{{/each}}
+
+				</div>
+			</div>
+			<div class="user_adress col-lg-4" id="change_password">
+				<h4>Change Password</h4>
+				<hr>
+				<div class="change_passwordForm">
+					<form action="/change_password" method="post">
+						<label for="sh">Current password</label>
+						<input type="text" name="currentPassword" id="current_password" placeholder="current password"
+							required>
+						<label for="current_password">New password</label>
+						<input type="text" name="pass1" id="current_password" placeholder="New Password" required>
+						<input type="text" name="userId" id="" value="{{user._id}}" hidden>
+						<label for="current_password">retype password</label>
+						<input type="text" name="pass2" id="current_password" placeholder="Re-enter password" required>
+						{{!-- <a href=""> Submit</a> --}}
+						<button type="submit" class="change_pass btn btn-primary">Submit</button>
+						<a class="cancel_btn btn" id="forget_pass_cancel">Cancel</a>
+					</form>
+				</div>
+
+			</div>
+			<div class="user_adress col-lg-4" id="change_info">
+				<span class="close material-icons" id="close">close</span>
+				<h4>Edit Personal Info</h4>
+				<hr>
+				<div class="edit_personal_info">
+					<form action="/edit_user" method="post">
+						<label for="fname">First name</label>
+						<input type="text" name="fName" id="fname" value={{currentUser.fname}} placeholder="first name"
+							required>
+						<label for="sname">second name</label>
+						<input type="text" name="sName" id="sname" value={{currentUser.sname}} placeholder="second name"
+							required>
+						<label for="number">Mobile Number</label>
+						<input type="text" name="mobileNumber" id="number" value={{currentUser.number}}
+							placeholder="enter mobile numer" required>
+						<input type="text" name="userId" id="" value="{{user._id}}" hidden>
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" value={{currentUser.email}}
+							placeholder="enter email" required>
+
+						<button type="submit" class="change_pass btn btn-primary">Submit</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		{{!-- Toast --}}
+		<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+			<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+				<div class="toast-header">
+					<img src="..." class="rounded me-2" alt="...">
+					<strong class="me-auto">Bootstrap</strong>
+					<small>11 mins ago</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>
+				<div class="toast-body">
+					Hello, world! This is a toast message.
+				</div>
+			</div>
+		</div>
+		{{!-- Toast end --}}
+
+
+
+		<div class="newadress_form col-lg-8" id="newAdress">
+			<h4 class="new_adress_h4">Add New Adress</h4>
+
+			<div class="testbox">
+				<form action="/addAdress" method="post">
+
+					<div class="item">
+						<p>Name</p>
+						<div class="name-item">
+							<input type="text" name="name" placeholder="First" class="col-lg-6" />
+							<input type="text" name="mobileNumber" placeholder="Mobile Number" class="col-lg-6" />
+						</div>
+					</div>
+					<div class="item">
+						<p>Email</p>
+						<input type="text" name="email" />
+						<input type="text" name="userId" id="" value="{{user._id}}" hidden>
+
+					</div>
+
+
+					<div class="item">
+						<p>Contact Address</p>
+
+						<div class="city-item">
+							<input type="text" name="Locality" placeholder="Locality" class="col-lg-6" />
+							<input type="text" name="district" placeholder="district" class="col-lg-6" />
+							<input type="text" name="pincode" placeholder="Postal / Zip code" class="col-lg-6"
+								style="height: 42px;" />
+							<select class="col-lg-6">
+								<option value="">State</option>
+								<option value="1">Kerala</option>
+								<option value="2">Tamilnadu</option>
+								<option value="3">karnataka</option>
+								<option value="4">goa</option>
+								<option value="5">maharashtra</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="item">
+						<p>Adress</p>
+						<textarea rows="3" name="adress"></textarea>
+					</div>
+					<div class="city-item col-lg-12">
+						<input type="text" name="alt-phone" placeholder="Alternative Phone (Optional)"
+							class="col-lg-6" />
+						<input type="text" name="landmark" placeholder="Landmark (Optional)" class="col-lg-6" />
+					</div>
+					<div class="btn-block">
+						<button class="save_adress" type="submit">Save</button>
+						<a  class="save_adress btn" id="canell_adress">Cancell</a>
+
+					</div>
+					
+				</form>
+				
+			</div>
+
+
+
+
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function () {
+		$('#newAdress').hide()
+		$('#change_password').hide()
+		$('#change_info').hide()
+		$('#add').click(function () {
+			$('#newAdress').show();
+			$('#account').hide();
+
+		})
+		$('#cancel_add').click(function () {
+			$('#newAdress').hide();
+			$('#account').show();
+		})
+		$('#change_pass').click(function () {
+			$('#adress_management').hide()
+			$('#change_info').hide()
+			$('#change_password').show()
+		})
+		$('#edit').click(function () {
+			$('#change_password').hide()
+			$('#adress_management').hide()
+			$('#change_info').show()
+		})
+		$('#forget_pass_cancel').click(function () {
+			$('#change_password').hide()
+			$('#adress_management').show()
+
+		})
+		$('#close').click(function () {
+			$('#change_info').hide()
+			$('#adress_management').show()
+
+		})
+		$('#canell_adress').click(function(){
+			$('#newAdress').hide()
+			$('#adress_management').show()
+			$('#account').show()
+		})
+	})
+</script>

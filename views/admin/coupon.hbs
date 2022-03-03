@@ -1,0 +1,54 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="cat-offer col-lg-4">
+                <h3 style="padding: 10px;">Coupon management</h3>
+                <form action="/admin/coupon" method="post">
+                    <label>Coupon</label>
+                    <input type="text" name="coupon" id="coupon" placeholder="enter coupon code">
+                    <br>
+                    <label for="startingDate">starting Date</label>
+                    <br>
+                    <input type="Date" name="startingDate" id="startingDate" placeholder="enter starting Date">
+
+                    <br>
+                    <label for="expiry">expiry Date</label>
+                    <br>
+                    <input type="Date" name="expiry" id="expiry">
+                    <br>
+                    <label for="">offer Percentage</label>
+                    <br>
+                    <input type="number" id="offerPercentage" name="offerPercentage" min="1" max="99" placeholder="%">
+                    <br>
+                    <input type="submit" id="off-submit" value="submit">
+
+                </form>
+            </div>
+            <div class="offerList col-lg-8">
+                <table class="rwd-table" style="width: 100%;">
+                    <tr>
+                        <th>category</th>
+                        <th>starting Date</th>
+                        <th>Expiry Date</th>
+                        <th>Percentage</th>
+                        <th>option</th>
+                        
+                    </tr>
+                    {{#each coupons}}
+                    <tr>
+                    <td>{{this.Coupon}}</td>
+                    <td>{{this.starting}}</td>
+                    <td>{{this.expiry}}</td>
+                    <td>{{this.offer}}</td>
+                    <td><a href="/admin/deletecoupon/{{this._id}}"><span class="material-icons">delete</span></a></td>
+                    </tr>
+                    {{/each}}
+
+                    
+                    
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

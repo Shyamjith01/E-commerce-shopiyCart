@@ -1,70 +1,88 @@
-
-	<!-- Start Banner Area -->
-	{{!-- <section class="banner-area organic-breadcrumb">
-		<div class="container">
-			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-				<div class="col-first">
-					<h1>Create An account</h1>
-					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Login/Register</a>
-					</nav>
-				</div>
+<!-- Start Banner Area -->
+{{!-- <section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>Create An account</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="category.html">Login/Register</a>
+				</nav>
 			</div>
 		</div>
-	</section> --}}
-	<!-- End Banner Area -->
+	</div>
+</section> --}}
+<!-- End Banner Area -->
 
-	<!--================Login Box Area =================-->
-	<section class="login_box_area section_gap mt-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img">
-						<img class="img-fluid" src="/images/login.jpg" alt="">
-						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>To keep connected with us please login with your personal info</p>
-							<a class="primary-btn" href="/login">Log in</a>
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="login_box_img">
+					<img class="img-fluid" src="/images/login.jpg" alt="">
+					<div class="hover">
+						<h4>Already have an account?</h4>
+						<p>To keep connected with us please login with your personal info</p>
+						<a class="primary-btn" href="/login">Log in</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="login_form_inner">
+					<h3>Create an account</h3>
+					<form class="row login_form" action="/signup" method="post" id="contactForm">
+						{{#if numberExist}}
+						<h6 style="color: red;">mobile number Already Exist</h6>
+						{{/if}}
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="name" name="fname" placeholder="First name   "
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'First name'" required>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="login_form_inner">
-						<h3>Create an account</h3>
-						<form class="row login_form" action="/signup" method="post" id="contactForm" >
-							{{#if numberExist}}
-							<h6 style="color: red;">mobile number Already Exist</h6>
-							{{/if}}
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="fname" placeholder="First name   " onfocus="this.placeholder = ''" onblur="this.placeholder = 'First name'" required >
-							</div>
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="sname" placeholder="Second name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second name'" required>
-							</div>
-                            <div class="col-md-12 form-group">
-								<input type="tel" class="form-control" id="number" name="number" placeholder="mobile number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mobile number'"  required>
-							</div>
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="email" placeholder="Email adress" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email adress'" required>
-							</div>
-                            <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'" required>
-							</div>
-							<div class="col-md-12 form-group">
-								{{!-- <div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div> --}}
-							</div>
-							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Sign Up</button>
-								<a href="#">Forgot Password?</a>
-							</div>
-						</form>
-					</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="name" name="sname" placeholder="Second name"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second name'" required>
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="tel" class="form-control" id="number" name="number" placeholder="mobile number"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'mobile number'" required>
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="name" name="email" placeholder="Email adress"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'email adress'" required>
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="name" name="password" placeholder="Password"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'" required>
+						</div>
+						<div class="col-md-12 form-group">
+							{{!-- <div class="creat_account">
+								<input type="checkbox" id="f-option2" name="selector">
+								<label for="f-option2">Keep me logged in</label>
+							</div> --}}
+						</div>
+						<div class="col-md-12 form-group">
+							<button type="submit" value="submit" class="primary-btn">Sign Up</button>
+							<a href="#">Forgot Password?</a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-	</section>
-	
+	</div>
+</section>
+<script>
+	$(document).ready(function () {
+		$('#loginForm').validate({
+			rules: {
+				number: {
+					required: true,
+					minlength: 10
+				},
+				password: {
+					required: true
+				}
+			}
+		})
+	})
+</script>

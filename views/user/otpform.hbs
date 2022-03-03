@@ -1,73 +1,91 @@
-
 <div class="container new-login-area " style="margin-top: 9rem;margin-bottom: 7rem;">
-    <div id='sign-in' class='login-setup-section'>
-        <form action="/loginOtp" method="post">
-        {{#if noUser}}
-        <h5 style="color: red;">User Not Found</h5>
-        {{/if}}
-        <h3 class="request-otp-header">Please verify your mobile number</h3>
-        <div class="form-group login-label">
-            <label for="inputnumber">mobile number</label>
-            <input type="number" name="number" class="form-control input-edit" placeholder='Enter mobile number' id="number">
-        </div>
-        {{!-- <button type="button" class="btn btn-default btn-lg btn-block request-otp" id='request-otp'>Get OTP</button> --}}
-        <input type="submit" value="submit" class="btn btn-default btn-lg btn-block request-otp">
-        </form>
-    </div>
-    
+  <div id='sign-in' class='login-setup-section col-lg-6'>
+    <form action="/loginOtp" method="post" id="otpMobNumberForm">
+      {{!-- {{#if noUser}}
+      <h5 style="color: red;">User Not Found</h5>
+      {{/if}} --}}
+      <h3 class="request-otp-header">Please verify your mobile number</h3>
+      <div class="form-group login-label">
+        <label for="inputnumber">mobile number</label>
+        <input type="number" name="number" class="form-control input-edit" placeholder='Enter mobile number'
+          id="number">
+      </div>
+      {{!-- <button type="button" class="btn btn-default btn-lg btn-block request-otp" id='request-otp'>Get OTP</button>
+      --}}
+      <input type="submit" value="submit" class="otpSendBtn btn btn-default btn-lg btn-block request-otp">
+    </form>
+  </div>
+
 </div>
 
+<script>
+  $(document).ready(function () {
+    $('#otpMobNumberForm').validate({
+      rules:{
+        number:{
+          required:true,
+          minlength:10
+        }
+      }
+    })
+  })
+</script>
 
 
-{{!-- <script>
-    $('#verify-otp').hide();
-    
-</script> --}}
 
 <style>
-    .new-login-area{
-  padding:24px;
-}
-h3 {
-  font-size: 24px;
-  line-height: 30px;
-}
-label {
-  font-size: 12px;
-}
-.request-otp-header {
-  margin: 40px 0px;
-}
-.login-label label {
-  color: #c74032;
-  font-weight: 600;
-}
-.input-edit {
-  border: none !important;
-  border-bottom: 2px solid #ccc !important;
-  padding: 6px 0px;
-  opacity: 0.8;
-}
-.input-edit:focus {
-  border-bottom-color: #c74032 !important;
-  box-shadow: none;
-  outline: 0;
-}
+  .new-login-area {
+    padding: 24px;
+  }
 
-.request-otp {
-  margin-top: 40px;
-  background: linear-gradient(#c74032, #91041b);
-  font-size: 14px;
-  color: #fff;
-}
-.request-otp:focus {
-  box-shadow: none;
-}
-.fa-chevron-left {
-  cursor: pointer;
-}
-.resend-otp{
-  margin-top:6px;
-  cursor:pointer;
-}
+  h3 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .request-otp-header {
+    margin: 40px 0px;
+  }
+
+  .login-label label {
+    color: #c74032;
+    font-weight: 600;
+  }
+
+  .input-edit {
+    border: none !important;
+    border-bottom: 2px solid #ccc !important;
+    padding: 6px 0px;
+    opacity: 0.8;
+  }
+
+  .input-edit:focus {
+    border-bottom-color: #c74032 !important;
+    box-shadow: none;
+    outline: 0;
+  }
+
+  .request-otp {
+    margin-top: 40px;
+    background: linear-gradient(#c74032, #91041b);
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .request-otp:focus {
+    box-shadow: none;
+  }
+
+  .fa-chevron-left {
+    cursor: pointer;
+  }
+
+  .resend-otp {
+    margin-top: 6px;
+    cursor: pointer;
+  }
 </style>

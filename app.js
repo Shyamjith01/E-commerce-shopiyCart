@@ -24,6 +24,7 @@ app.use(fileupload())
 
 
 var db=require('./config/connection');
+const { throws } = require('assert');
       
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,8 +39,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:"Key",cookie:{maxAge:7000000}}))
+// app.use(session({
+//   secret:'key',
+//   resave:false,
+//   saveUninitialized:true,
+//   cookie:{secure:true}    
+// }))
 app.use('/', userRouter);
-app.use('/admin', adminRouter);
+app.use('/admin', adminRouter);  
 
    
 // catch 404 and forward to error handler
@@ -48,9 +55,13 @@ app.use(function(req, res, next) {
 });
 
 db.connect((err)=>{
-  if(err) console.log("database connection Err"+err);
-
-  else console.log("database connected");
+  if(err){
+    
+    console.log("database connection Err"+err);
+  }else{
+    console.log("database connected");
+    
+  }
 })
 
 // error handler

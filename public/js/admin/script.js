@@ -233,3 +233,6 @@ const fakeUsersCount = () => {
 setInterval(() => {
   fakeUsersCount()
 }, 1000)
+
+
+//bar chart

@@ -1,19 +1,37 @@
-<h1 style="margin-left: auto;margin-right: auto;">Product list</h1>
-<table class="rwd-table" >
-  <tr>
-    <th>User name</th>
-    <th>Second name</th>
-    <th>Email</th>
-    <th>Number</th>
-    <th>Options</th>
-  </tr>
-  {{#each blockedUsers}}
-  <tr>
-    <td data-th="Product name">{{this.fname}}</td>
-    <td data-th="Catagory">{{this.sname}}</td>
-    <td data-th="brand">{{this.number}}</td>
-    <td data-th="Price">{{this.email}}</td>
-    <td><a href="/admin/Unblock-user/{{this._id}}" style="color: red;"><input type="btn" class="btn bg-danger" style="color: white;"  value="unblock" name="" id=""></span></a></td>
-  </tr>
-  {{/each}}
-</table>
+<h1 style="margin-left: auto;margin-right: auto;padding-left: 1rem;">Blocked Users</h1>
+{{!--  --}}
+<div class="col-xl-11 col-lg-10 mb-4 col-md-12 col-sm-12">
+  <div class="card">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">All Orders</h6>
+
+    </div>
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th>User name</th>
+            <th>Second name</th>
+            <th>Email</th>
+            <th>Number</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each blockedUsers}}
+          <tr>
+            <td data-th="Product name">{{this.fname}}</td>
+            <td data-th="Catagory">{{this.sname}}</td>
+            <td data-th="brand">{{this.number}}</td>
+            <td data-th="Price">{{this.email}}</td>
+            <td><a href="/admin/Unblock-user/{{this._id}}" style="color: red;"><input type="btn" class="btn bg-danger"
+                  style="color: white;" value="unblock" name="" id=""></span></a></td>
+          </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer"></div>
+  </div>
+</div>

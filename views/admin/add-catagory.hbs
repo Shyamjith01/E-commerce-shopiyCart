@@ -1,0 +1,47 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 mb-4 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">All Orders</h6>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>sub-category</th>
+                                    <th>Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each categories}}
+                                <tr>
+                                    <td data-th="Movie Title">{{@index}}</td>
+                                    <td>{{this.category}}</td>
+                                    <td><a href="/admin/delete-cat/{{this._id}}" style="color: red;"><span
+                                                class="material-icons">delete</span></a></td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h4>Add New Category</h4>
+                <div class="catagories col-lg-12">
+                    <form action="/admin/category" method="post">
+                        <input type="text" name="category" id="category" class="category"
+                            placeholder="enter new category" required>
+                        <input type="submit" value="submit" name="" id="submit-cat">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

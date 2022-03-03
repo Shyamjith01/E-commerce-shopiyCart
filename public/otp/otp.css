@@ -17,7 +17,7 @@
 .container {
     margin: 0 auto;
 }
-input[type=text], input[type=password],input[type=submit] {
+input[type=text], input[type=password],input[type=submit] ,input[type=email],input[type=number],input[type=tel]{
     margin:0 auto;
     width:100%;
     display: block;
@@ -27,7 +27,7 @@ input[type=text], input[type=password],input[type=submit] {
    
 }
 
-input[type=text]{
+input[type=text],input[type=email],input[type=number],input[type=tel]{
    border:1px solid #cccccc;
    border-top-right-radius:3px;border-top-left-radius:3px;
    padding-left:15px;

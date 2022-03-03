@@ -1,105 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link href="img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Login</title>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/ruang-admin.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-gradient-login">
-  <!-- Login Content -->
-  <div class="container-login">
-    <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-12 col-md-9">
-        <div class="card shadow-sm my-5">
-          <div class="card-body p-0">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="login-form">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
-                  </div>
-                  <form class="admin" action="/admin/login" method="post" id="adminLogin">
-                  {{#if adminErr}}
-                    <h6>err</h6>
-                  {{/if}}
-                    <div class="form-group">
-                      <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control" name="password" id="exampleInputPassword" placeholder="Password" required>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember
-                          Me</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <input class="btn btn-primary btn-block" type="submit" value="login">
-
-                    </div>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
-                  </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="font-weight-bold small" href="register.html">Create an Account!</a>
-                  </div>
-                  <div class="text-center">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
+  
+  <div class="wrapper">
+    <form class="form-signin" action="admin/adminLogin" method="post" >       
+      <h2 class="form-signin-heading">Admin Login</h2>
+      <input type="tel  " class="form-control" name="number" placeholder="Mobile number" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+      <a href="">forgett Password</a>
+      {{!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>    --}}
+      <input type="submit" value="Login"   class="btn btn-lg  btn-primary  btn-block"  >
+    </form>
   </div>
-  <!-- Login Content -->
-  
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-  
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script> 
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
-  <script>
-    $(document).ready(function(){
-      $('#adminLogin').validate({
-        rules:{
-          email:{
-            required:true
-            email:true
-          },
-          password:{
-            required:true
-          }
 
-        }
-      })
-    })
-  </script>
 
+<style>
+  body {
+  background: #eee !important;
+}
+
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 30px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type=text] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input[type=password] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
   
-</body>
-
-</html>

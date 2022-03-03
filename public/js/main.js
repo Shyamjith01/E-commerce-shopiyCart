@@ -8,8 +8,7 @@ $(document).ready(function(){
 	header_height_static = $(".site-header.static").outerHeight(),
 	fitscreen 			 = window_height - header_height;
 
-
-	$(".fullscreen").css("height", window_height)
+	$(".fullscreen").css("height",window_height)
     $(".fitscreen").css("height", fitscreen);
 
   //------- Active Nice Select --------//

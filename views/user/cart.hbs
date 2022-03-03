@@ -1,4 +1,4 @@
-<!-- Start Banner Area -->
+{{!-- <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -11,174 +11,162 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- End Banner Area -->
 
 <!--================Cart Area =================-->
 
-<section class="cart_area " style="background: #ffff;">
+<section class="cart_area " style="background: #ffff;margin-top: 4rem;">
     <div class="container-fluid">
         <div class="cart_inner">
             <div class="table-responsive">
-                <table class="rwd-table" style="width: inherit;">
+
+                {{!-- <div class="cart_list">
+                    <div class="cart_header">Cart Products</div>
+
+                    <table cellspacing="0" class="cart_table">
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Brand</th>
+
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">options</th>
+                        </tr>
+                        {{#each products}}
+
+                        <tr class="tr">
+                            <td data-th="image"><img src="/product-images/{{this.product._id}}a.jpg" class="cart_proImg"
+                                    alt="" style="width: 60px; height: auto;"></td>
+                            <td data-th="Product name" class="cart_productName">{{this.product.proName}}</td>
+                            <td data-th="brand" class="cartProBrand">{{this.product.brand}}</td>
+                            <td data-th="Price" class="cartProPrice">{{this.product.price}}</td>
+
+                            <td class="ProCartQuantity">
+                                <div class="product_count">
+
+                                    <span id="{{this.product._id}}">{{this.quantity}}</span>
+
+                                    <button class="increase items-count" type="button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"
+                                        style="margin-top: -1rem;"><i class="lnr lnr-chevron-up"></i></button>
+                                    <button class="reduced items-count" type="button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"
+                                        style="margin-bottom: -1rem;"><i class="lnr lnr-chevron-down"></i></button>
+                                </div>
+                            </td>
+                            <td class="cart_option"><button class="btn btn-danger"
+                                    onclick="deleteCartPro('{{this._id}}','{{this.product._id}}')">Delete</button>
+                            </td>
+
+                        </tr>
+                        {{/each}}
+
+
+                    </table>
+                </div> --}}
+                <h3 class="wishList-mainHeader text-center mb-5 mt-3">Cart Products </h3>
+                <table class="wishListTable mb-5">
+
                     <thead>
                         <tr>
                             <th scope="col">Image</th>
                             <th scope="col">Product</th>
-                            <th scope="col">Quantity</th>
-                            
                             <th scope="col">Brand</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{!-- {{#each cartProduct}}
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="/product-images/{{this._id}}.jpg" alt="" style="width: 9rem;">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>{{this.proName}}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>${{this.price}}</h5>
-                            </td>
-                            <td>
-                                <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                        class="input-text qty">
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                        class="increase items-count" type="button"><i
-                                            class="lnr lnr-chevron-up"></i></button>
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count" type="button"><i
-                                            class="lnr lnr-chevron-down"></i></button>
-                                </div>
-                            </td>
-                            <td><a href=""><span class="material-icons" style="color: red;">delete</span></a></td>
-                            <td>
-                                <h5>${{this.price}}</h5>
-                            </td>
-                        </tr>
-                        {{/each}} --}}
                         {{#each products}}
                         <tr>
-                            
-                            <td data-th="image"><img src="/product-images/{{this.product._id}}.jpg" alt=""
-                                    style="width: 60px; height: auto;"></td>
-                            <td data-th="Product name">{{this.product.proName}}</td>
-                            
+                            <td data-label="Product Image"><img src="/product-images/{{this.product._id}}a.jpg" alt=""
+                                    style="width: 60px; height: auto;"><br></br></td>
+                            <td data-label="product name">{{this.product.proName}}</td>
+                            <td data-label="Due Date">{{this.product.brand}}</td>
+                            <td data-label="Amount">${{this.product.price}}</td>
+                            <td data-label="Quantity" class="ProCartQuantity mt-4" >
+                                <div class="product_count">
 
-                            
-                            <td data-th="brand">{{this.product.brand}}</td>
-                            <td data-th="Price">{{this.product.price}}</td>
-                            
-                            {{!-- <td>
-                                <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="{{this.quantity}}" title="Quantity:"
-                                        class="input-text qty">
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                        class="increase items-count" type="button"><i
-                                            class="lnr lnr-chevron-up"></i></button>
-                                    <button
-                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button> 
-                                </div>
-                            </td> --}}
-                            <td>
-                                <div class="product_count">
-                                    {{!-- <input type="text" name="qty" id="{{this.product._d}}" maxlength="12" value="{{this.quantity}}" 
-                                         > --}}
-                                    <span id="{{this.product._id}}">{{this.quantity}}</span>
-                                    
-                                    <button class="increase items-count" type="button" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)" style="margin-top: -1rem;" ><i  class="lnr lnr-chevron-up"></i></button>
-                                    <button class="reduced items-count" type="button" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)" style="margin-bottom: -1rem;"><i class="lnr lnr-chevron-down"></i></button> 
+                                    <span class="cartQuantityNumber" id="{{this.product._id}}">{{this.quantity}}</span>
+
+                                    <button class="increase items-count" type="button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"
+                                        style="margin-top: -1rem;"><i class="lnr lnr-chevron-up" style="color: black;"></i></button>
+                                    <button class="reduced items-count" type="button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"
+                                        style="margin-bottom: -1rem;"><i class="lnr lnr-chevron-down" style="color: black;"></i></button>
                                 </div>
                             </td>
-                            {{!-- <td><a href="/admin/delete-product/{{this._id}}{{this.product._id}}" style="color: red;"><spanclass="material-icons">delete</span></a></td> --}}
-                            <td><button class="btn btn-danger" onclick="deleteCartPro('{{this._id}}','{{this.product._id}}')">Delete</button></td>
+                            <td data-label="Option"><button class="btn btn-danger"
+                                    onclick="deleteCartPro('{{this._id}}','{{this.product._id}}')">Delete</button></td>
                         </tr>
                         {{/each}}
+
+                    </tbody>
                 </table>
+
+
+
+
+
                 <table class="table">
-                        <tr class="bottom_button">
-                            <td>
 
-                            <td>
+                    <tr>
+                        <td style="background-color: transparent;">
 
-                            </td>
-                            <td></td>
-                            
-                            <td class="float-right">
-                                <div class="cupon_text d-flex align-items-center ">
-                                    <input type="text" placeholder="Coupon Code">
-                                    <a class="primary-btn" href="#">Apply</a>
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                        </td>
+                        <td style="background-color: transparent;">
 
-                            </td>
-                            <td>
+                        </td>
+                        <td style="background-color: transparent;">
+                            <h5>Total</h5>
+                        </td>
+                        <td style="background-color: transparent;">
+                            <h5>₹<span id="total">{{Total}}</span>.00</h5>
+                        </td>
+                    </tr>
+                    <tr class="shipping_area">
+                        <td style="background-color: transparent;">
 
-                            </td>
-                            <td>
-                                <h5>Total</h5>
-                            </td>
-                            <td>
-                                <h5>$<span id="total">{{Total}}</span>.00</h5>
-                            </td>
-                        </tr>
-                        <tr class="shipping_area">
-                            <td>
+                        </td>
+                        <td style="background-color: transparent;">
 
-                            </td>
-                            <td>
+                        </td>
+                        <td style="background-color: transparent;">
+                            <h5>Shipping</h5>
+                        </td>
+                        <td>
+                            <div class="shipping_box">
+                                <ul class="list">
 
-                            </td>
-                            <td>
-                                <h5>Shipping</h5>
-                            </td>
-                            <td>
-                                <div class="shipping_box">
-                                    <ul class="list">
-                                        <li><a href="#">Flat Rate: $5.00</a></li>
-                                        <li><a href="#">Free Shipping</a></li>
-                                        
-                                        <li class="active"><a href="#">Local Delivery: $2.00</a></li>
-                                    </ul>
-                                    
-                                   
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td>
 
-                            </td>
-                            <td>
+                                    <li class="active"><a href="#">Local Delivery: FREE</a></li>
+                                </ul>
 
-                            </td>
-                            <td>
 
-                            </td>
-                            <td>
-                                <div class="checkout_btn_inner d-flex align-items-center float-right">
-                                    
-                                    <a class="primary-btn" href="/checkout">Proceed to checkout</a>
-                                </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="out_button_area">
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <div class="checkout_btn_inner d-flex align-items-center float-right">
+
+                                <a class="primary-btn" href="/checkout">Proceed to checkout</a>
+                            </div>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -188,52 +176,51 @@
 </section>
 <!--================End Cart Area =================-->
 <script>
-    
-    function changeQuantity(cartId,proId,userId,count){
+
+    function changeQuantity(cartId, proId, userId, count) {
         let quantity = parseInt(document.getElementById(proId).innerHTML)
-        count=parseInt(count)
-        
+        count = parseInt(count)
+
         $.ajax({
-            url:'/change-product-quantity',
-            data:{
-                user:userId,
-                cart:cartId,
-                product:proId,
-                count:count,
-                quantity:quantity
+            url: '/change-product-quantity',
+            data: {
+                user: userId,
+                cart: cartId,
+                product: proId,
+                count: count,
+                quantity: quantity
             },
-            method:'post',
-            
-            success:(response)=>{
-                if(response.removeProduct){
+            method: 'post',
+
+            success: (response) => {
+                if (response.removeProduct) {
                     alert("product removed from the cart")
                     location.reload()
-                }else{
-                    
-                    document.getElementById(proId).innerHTML=quantity+count
-                    console.log(response.sum.sum,"fhbgshfbg")
-                    document.getElementById('total').innerHTML=response.sum
+                } else {
+                    document.getElementById(proId).innerHTML = quantity + count
+                    console.log(response.sum.sum, "fhbgshfbg")
+                    document.getElementById('total').innerHTML = response.sum
 
                 }
-                
+
             }
-            
-           
+
+
         })
     }
 
-    function deleteCartPro(cartId,proId){
+    function deleteCartPro(cartId, proId) {
         $.ajax({
-            url:'/delete-cart-product',
-            data:{
-                cart:cartId,
-                product:proId
+            url: '/delete-cart-product',
+            data: {
+                cart: cartId,
+                product: proId
             },
-            method:'post',
-            success:(response)=>{
-                if(response.removeProduct){
+            method: 'post',
+            success: (response) => {
+                if (response.removeProduct) {
 
-                }else{
+                } else {
                     alert("Cart product has removed")
                 }
             }

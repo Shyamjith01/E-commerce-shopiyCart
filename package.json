@@ -6,9 +6,12 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.2",
     "assets-embedded": "^0.1.2",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
+    "cropperjs": "^1.5.12",
+    "croppie": "^2.6.5",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
     "express": "~4.16.1",
@@ -18,12 +21,19 @@
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
+    "modal": "^1.2.0",
     "module": "^0.0.1",
-    "mongodb": "^4.2.1",
+    "moment": "^2.29.1",
+    "mongod": "^2.0.0",
+    "mongodb": "^4.3.1",
     "morgan": "~1.9.1",
     "mv": "^2.1.1",
     "node": "^17.2.0",
     "nodemon": "^2.0.15",
+    "razorpay": "^2.8.0",
+    "renovate": "^31.28.2",
+    "swal": "^0.1.0",
+    "sweetalert": "^2.1.2",
     "twilio": "^3.71.3"
   }
 }

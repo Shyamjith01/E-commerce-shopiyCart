@@ -32,7 +32,7 @@
                     <input type="password" class="form-control" id="password" name="password">
                     <span class="placeholder" data-placeholder="Password"></span>
                 </div>
-                <div class="col-md-12 form-group">      
+                <div class="col-md-12 form-group">
                     <button type="submit" value="submit" class="primary-btn">login</button>
                     <div class="creat_account">
                         <input type="checkbox" id="f-option" name="selector">
@@ -46,8 +46,30 @@
             <div class="check_title mb-3">
                 <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
             </div>
-            <input type="text" placeholder="Enter coupon code" style="margin-left: 0rem;" class="col-12w">
-            <a class="tp_btn" href="#">Apply Coupon</a>
+            <input type="text" id="couponInput" placeholder="Enter coupon code" style="margin-left: 0rem;"
+                class="col-12w">
+            
+            <input type="text" id="couponTotal" name="Total" value="{{AllTotal}}" hidden>
+            <a class="couponButton btn tp_btn" id="couponBtn" onclick="couponApply()">Apply Coupon</a>
+            {{!-- Error handling of coupons --}}
+            
+            <div class="mt-2">
+                <div class="alert alert-danger" style="display: none;" id="couponUsed" role="alert">
+                    This Coupon was redeemed
+                </div>
+                <div class="alert alert-danger" style="display: none;" id="couponInvalid" role="alert">
+                    This Coupon is
+                    invalid
+                </div>
+                <div class="alert alert-success" style="display: none;" id="couponSuccess" role="alert">
+                    Coupon Applied
+                    Successfully
+                </div>
+                <div class="alert alert-warning" style="display: none;" id="couponExpired" role="alert">
+                    Sorry!!! Your
+                    Coupon has been Expired
+                </div>
+            </div>
         </div>
 
         <div class="col-md-12 container bg-default">
@@ -61,7 +83,7 @@
                     <div class="col-lg-8 col-12">
                         <div class="form-group">
                             <label for="email">Your name</label>
-                            <input type="email" class="form-control" id="companyName" placeholder="Enter your  name"
+                            <input type="text" class="form-control" id="companyName" placeholder="Enter your  name"
                                 name="name" required>
                         </div>
                         <div class="form-row">
@@ -87,7 +109,7 @@
 
                         <div class="form-group">
                             <label for="email">Company name</label>
-                            <input type="email" class="form-control" id="companyName" name="companyName"
+                            <input type="text" class="form-control" id="companyName" name="companyName"
                                 placeholder="Enter your company name" required>
                         </div>
 
@@ -152,12 +174,9 @@
 
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="credit" name="payment-method"
-                                value="online-Payment" checked required>
-                            <label for="credit" class="form-check-label">Razorpat</label>
+                                value="online-Payment" required>
+                            <label for="credit" class="form-check-label">Razorpay</label>
                         </div>
-
-
-
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="paypal" name="payment-method" value="COD"
                                 required>
@@ -175,44 +194,26 @@
                         <div class="order_box">
                             <h2>Your Order</h2>
                             <ul class="list">
-                                <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span
-                                            class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
-                                            class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
-                                            class="last">$720.00</span></a></li>
+                                <span>products</span>
+                                {{#each products}}
+                                
+                                <li><a href="#" style="color: black;">⚫{{this.product.proName}}  </a></li>
+                                {{/each}}
+                               
+                                
                             </ul>
                             <ul class="list list_2">
                                 <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
+                                <li><a href="#">Shipping <span class="shipping">Flat rate: $50.00</span></a></li>
                                 <li><a href="#">Total <span>${{AllTotal}}.00</span></a></li>
                             </ul>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
-                                    <label for="f-option5">Check payments</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                                    Store Postcode.</p>
-                            </div>
-                            <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
-                                    <label for="f-option6">Paypal </label>
-                                    <img src="img/product/card.jpg" alt="">
-                                    <div class="check"></div>
-                                </div>
-                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                    account.</p>
-                            </div>
+
                             <div class="creat_account">
                                 <input type="checkbox" id="f-option4" name="selector">
                                 <label for="f-option4">I’ve read and accept the </label>
                                 <a href="#">terms & conditions*</a>
                             </div>
-                            <button class="btn  bt-lg btn-block" type="submit"
+                            <button id="checkout_btn" class="btn  bt-lg btn-block" type="submit"
                                 style="background: #ffa426;color: white;">Continue to Checkout</button>
                         </div>
                     </div>
@@ -231,5 +232,64 @@
 <!-- End footer Area -->
 
 <script>
+    function couponApply(){
+        let couponCode= document.getElementById('couponInput').value
+        let couponTotal = document.getElementById('couponTotal').value
 
+        $.ajax({
+            url:'/couponApply',
+            data:{
+                Coupon:couponCode,
+                Total:couponTotal
+            },
+            method:'post',
+            success: (response) => {
+                console.log(response)
+                if (response.couponSuccess) {
+                    let oldTotal = parseInt(document.getElementById('totalOriginal').innerHTML)
+                    let discount = oldTotal - parseInt(response.total)
+                    document.getElementById('couponInput').readOnly = true
+                    document.getElementById('discount').value = discount
+                    document.getElementById('code').value = couponCode
+                    $('#discount').show()
+                    $('#discountLabel').show()
+                    $('#discounttd').show()
+                    $('#newTotal').show()
+                    $('#tdTotal').show()
+                    $('#totalOriginal').show()
+
+                    document.getElementById('totalOriginal').innerHTML = response.total
+                    $('#couponSuccess').show()
+                    $('#couponUsed').hide()
+                    $('#couponInvalid').hide()
+                    $('#couponExpired').hide()
+                }
+
+                if (response.couponUsed) {
+                    $('#couponUsed').show()
+                    $('#couponSuccess').hide()
+                    $('#couponInvalid').hide()
+                    $('#couponExpired').hide()
+                    $('#discount').hide()
+                    $('#discountLabel').hide()
+                }
+                if (response.invalidCoupon) {
+                    $('#couponInvalid').show()
+                    $('#couponSuccess').hide()
+                    $('#couponUsed').hide()
+                    $('#couponExpired').hide()
+                    $('#discount').hide()
+                    $('#discountLabel').hide()
+                }
+                if (response.couponExpired) {
+                    $('#couponExpired').show()
+                    $('#couponSuccess').hide()
+                    $('#couponInvalid').hide()
+                    $('#couponUsed').hide()
+                    $('#discount').hide()
+                    $('#discountLabel').hide()
+                }
+            }
+        })
+    }
 </script>
