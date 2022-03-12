@@ -29,30 +29,43 @@
 
                 </form>
             </div>
-            <div class="offerList col-lg-8">
-                <table class="rwd-table" style="width: 100%;">
-                    <tr>
-                        <th>category</th>
-                        <th>starting Date</th>
-                        <th>Expiry Date</th>
-                        <th>Percentage</th>
-                        <th>option</th>
-                        
-                    </tr>
-                    {{#each catOffer}}
-                    <tr>
-                    <td>{{this.category}}</td>
-                    <td>{{this.startingDate}}</td>
-                    <td>{{this.expiry}}</td>
-                    <td>{{this.offerPercentage}}</td>
-                    <td><a href="/admin/deleteCatOffer/{{this._id}}"><span class="material-icons">delete</span></a></td>
-                    </tr>
-                    {{/each}}
 
-                    
-                    
+            <div class="col-xl-8 col-lg-8 mb-4 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">category offers</h6>
 
-                </table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>category</th>
+                                    <th>starting Date</th>
+                                    <th>Expiry Date</th>
+                                    <th>Percentage</th>
+                                    <th>option</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each catOffer}}
+                                <tr>
+                                    <td>{{this.category}}</td>
+                                    <td>{{this.startingDate}}</td>
+                                    <td>{{this.expiry}}</td>
+                                    <td>{{this.offerPercentage}} %</td>
+                                    <td><a href="/admin/deleteCatOffer/{{this._id}}"><span
+                                                class="material-icons">delete</span></a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ function razorpayPayment(order) {
         "currency": "INR",
         "name": "shopiyCart",
         "description": "Test Transaction",
-        "image": "https://example.com/your_logo",
+        "image": 'https://cdn.wallpapersafari.com/84/0/CkrnbA.jpg',
         "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
         "handler": function (response) {
 
@@ -38,9 +38,9 @@ function razorpayPayment(order) {
             verifyPayment(response, order);
         },
         "prefill": {
-            "name": "Gaurav Kumar",
-            "email": "gaurav.kumar@example.com",
-            "contact": "9999999999"
+            "name": "shopiyCart",
+            "email": "shopiyCart@gmail.com",
+            "contact": "94003263511"
         },
         "notes": {
             "address": "Razorpay Corporate Office"
@@ -79,11 +79,9 @@ function verifyPayment(response, order) {
 
 function sample() {
     console.log("inside of sample")
-    var x = document.getElementById("snackbar")
-
-    x.className = "show"
-
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () {
+        location.reload()
+    }, 2800)
 }
 
 
@@ -91,7 +89,6 @@ function sample() {
 
 //delte order 
 function deleteOrder(id) {
-    console.log("inside of function")
     $.ajax({
         url: '/delete_order',
         data: {
@@ -101,15 +98,58 @@ function deleteOrder(id) {
         success: (response) => {
             if (response.status) {
                 console.log("response")
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'order history deleted',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((resp) => {
+                    if (resp) {
+                        location.reload()
+                    }
+                })
 
 
-                setTimeout(function(){
-                    location.reload()
-                },2800)
-                sample()
+
+
 
 
             }
+        }
+    })
+
+    console.log("inside of function")
+
+}
+
+//adress deletion
+function adressDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "are you sure to delete the adress ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/del_adress/' + id,
+                method: 'get',
+                success: (response) => {
+                    if (response.status) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your adress has been deleted.',
+                            'success'
+                        ).then((resp)=>{
+                            location.reload()
+                        })
+                    }
+                }
+            })
         }
     })
 }

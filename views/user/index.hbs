@@ -1,10 +1,10 @@
-<!-- start banner Area -->
+
 
 <section class="banner-area">
 	<div class="container">
 		<div class="row fullscreen align-items-center justify-content-start">
 			<div class="col-lg-12">
-				<div class="active-banner-slider owl-carousel">
+				<div class=" owl-carousel">
 					<!-- single-slide -->
 					<div class="row single-slide align-items-center d-flex">
 						<div class="col-lg-5 col-md-6">
@@ -25,24 +25,7 @@
 						</div>
 					</div>
 					<!-- single-slide -->
-					<div class="row single-slide">
-						<div class="col-lg-5">
-							<div class="banner-content">
-								<h1>Nike New <br>Collection!</h1>
-								<p>Shop a huge selection of shoes, boots, sandals, heels and more on
-									sale at SHOESTORE Find designer women's, men's and kids' shoes up to 70% off.</p>
-								<div class="add-bag d-flex align-items-center">
-									<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-									<span class="add-text text-uppercase">Add to Bag</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-7">
-							<div class="banner-img">
-								<img class="img-fluid" src="images/banner/banner-img.png" alt="">
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -122,7 +105,8 @@
 					<div class="col-lg-4	 col-md-4">
 						<div class="single-deal">
 							<div class="overlay"></div>
-							<img class="img-fluid w-100" src="/banner-images/{{this._id}}.jpg" alt="" style="height: 18.5rem;object-fit: cover;">
+							<img class="img-fluid w-100" src="/banner-images/{{this._id}}.jpg" alt=""
+								style="height: 18.5rem;object-fit: cover;">
 							<a href="/images/category/c2.jpg" class="img-pop-up" target="_blank">
 								<div class="deal-details">
 									<h6 class="deal-title">{{this.bannerTitle}}</h6>
@@ -149,7 +133,8 @@
 					<div class="col-lg-8 col-md-8">
 						<div class="single-deal">
 							<div class="overlay"></div>
-							<img class="img-fluid w-100" style="    height: 18rem;object-fit: contain;" src="/banner-images/{{this._id}}.jpg" alt="">
+							<img class="img-fluid w-100" style="    height: 18rem;object-fit: contain;"
+								src="/banner-images/{{this._id}}.jpg" alt="">
 							<a href="/images/category/c4.jpg" class="img-pop-up" target="_blank">
 								<div class="deal-details">
 									<h6 class="deal-title">{{this.bannerTitle}}</h6>
@@ -200,8 +185,8 @@
 					<div class="single-product">
 
 						<a href="/single-product/{{this._id}}"><img class="img-fluid"
-								src="/product-images/{{this._id}}a.jpg" alt="image not found"
-								style="height: 19rem;"></a>
+								src="/product-images/{{this._id}}a.jpg" alt="proImgMain image not found"
+								style="height: 19rem;object-fit: contain;"></a>
 
 						<div class="product-details">
 							<div style="height: 4.5rem;">
@@ -209,11 +194,11 @@
 								<h6 id="proName">{{this.proName}}</h6>
 								<div class="price">
 									<h6 class="price">₹{{this.price}}</h6>
-									{{#if offer}}
+									{{#if this.offer}}
 									<h6 class="l-through" style="font-family: 'Font Awesome 5 Free';color: #878787;">
-										₹{{this.landingCost}}</h6>
+										₹{{this.actualPrice}}</h6>
 									{{/if}}
-									
+
 									{{#if this.offerPercentage}}
 									<span class="offerShow">{{this.offerPercentage}}%</span>
 
@@ -221,23 +206,14 @@
 								</div>
 							</div>
 							<div class="prd-bottom">
-								{{!-- <button type="button" class="btn btn-warning"
-									style="margin-bottom: 1.1rem;">BuyNow</button> --}}
-								<a class="buynow_index btn" href="/buyNow/{{this._id}}">BuyNow</a>
 
-								{{!-- <a href="/add-to-cart/{{this._id}}" class="social-info">
-									<span class="ti-bag"></span>
-									<p class="hover-text">add to bag</p>
-								</a> --}}
+								<a class="buynow_index btn" href="/buyNow/{{this._id}}">BuyNow</a>
 								<a onclick="addToCart('{{this._id}}')" class="social-info">
 									<span class="ti-bag"></span>
 									<p class="hover-text">add to bag</p>
 								</a>
 
-								{{!-- <a href="/add-to-wish/{{this._id}}" class="social-info">
-									<span class="lnr lnr-heart"></span>
-									<p class="hover-text">Wishlist</p>
-								</a> --}}
+				
 								<a onclick="addToWhishList('{{this._id}}')" class="social-info">
 									<span class="lnr lnr-heart"></span>
 									<p class="hover-text">Wishlist</p>
@@ -327,8 +303,9 @@
 							<div>
 								<h4 class="pronameN">{{this.proName}}</h4>
 							</div>
-							<div class="add-bag d-flex align-items-center justify-content-center">
-								<a class="add-btn" href=""><span class="bagG ti-bag"
+							<div class="add-bag d-flex align-items-center justify-content-center"
+								onclick="addToCart('{{this._id}}')">
+								<a class="add-btn"><span class="bagG ti-bag"
 										style="  margin-top: 6px;display: inline-block;color: #fff;"></span></a>
 								<span class="add-text text-uppercase">Add to Bag</span>
 							</div>
@@ -399,7 +376,8 @@
 					{{#each topOffer}}
 					<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 						<div class="single-related-product d-flex">
-							<a href="#"><img src="/product-images/{{this._id}}a.jpg" alt="" style="width: 4rem;"></a>
+							<a href="/single-product/{{this._id}}"><img src="/product-images/{{this._id}}a.jpg" alt=""
+									style="width: 4rem;"></a>
 							<div class="desc">
 								<a href="#" class="title">{{this.proName}}</a>
 								<div class="price">
@@ -415,7 +393,7 @@
 			</div>
 			<div class="col-lg-3">
 				<div class="ctg-right">
-					<a href="#" target="_blank">
+					<a href="/products" target="_blank">
 						<img class="img-fluid d-block mx-auto" src="/images/category/c5.jpg" alt="">
 					</a>
 				</div>
@@ -426,3 +404,24 @@
 <!-- End related-product Area -->
 
 <!-- start footer Area -->
+
+
+<script>
+	function sampleToast() {
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
+		Toast.fire({
+			icon: 'success',
+			title: 'Signed in successfully'
+		})
+	}
+</script>

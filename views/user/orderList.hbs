@@ -1,59 +1,3 @@
-{{!-- <div class="container">
-  <div class="cart_list" style="margin-top: 9rem;">
-    <div class="cart_header">Orders</div>
-
-    <table cellspacing="0" class="cart_table">
-      <tr class="Ordertable_Header">
-
-        <th>Delivery Adress</th>
-        <th>OrderDate</th>
-        <th>Payment method</th>
-        <th>status</th>
-
-        <th>Price</th>
-        <th>Option</th>
-        <th>Option</th>
-      </tr>
-      {{#each orders}}
-      <tr class="tr">
-
-        </td>
-        <td data-th="Catagory" class="proCat">{{this.deliveryDetails.adress1}}{{this.deliveryDetails.pincode}}</td>
-        <td class="proQuan"> {{this.Date}}</td>
-        <td class="proBrand">{{this.paymentMethod}}</td>
-
-        <td class="proStats"><span class="badge badge-warning">{{this.status}}</span></td>
-        <td data-th="brand" class="proPrice">₹{{this.totalAmount}}</td>
-        <td>
-          <a href="/SingleOrder/{{this._id}}"><input type="button" class="btn bg-danger"
-              style="color: white;background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);" value="View Product"
-              name="" id=""></span></a>
-        </td>
-
-        {{#if this.Cancelled}}
-        <td class="cancell_td">
-          <a onclick="deleteOrder('{{this._id}}')">
-            <span style="color: red;" class="material-icons">
-              delete
-            </span>
-          </a>
-        </td>
-        <div id="snackbar">Order Deleting..</div>
-
-
-        {{else}}
-        <td><a href="/cancelOrder/{{this._id}}" style="color: red;"><input type="button" class="btn bg-danger"
-              style="color: white;" value="Cancell" name="" id=""></span></a>
-        </td>
-        {{/if}}
-
-      </tr>
-
-      {{/each}}
-    </table>
-  </div>
-</div> --}}
-
 <div class="container mt-5" style="margin-top: 9rem !important;">
   <h4 class="order-heading">My Orders</h4>
   <div class="row ">
@@ -71,7 +15,12 @@
         <h6 class="mt-4">Order Date:</h6>
         <span>{{this.Date}}</span> <br>
         <span>{{this.time}}</span> <br>
-        <a href="/viewWhishProduct/{{this._id}}" class="OrderPageBtn btn btn-primary mt-2">View Product</a>
+        {{#if this.Cancelled}}
+        <div style="margin-top:4rem ;"></div>
+        {{else}}
+        <a href="/SingleOrder/{{this._id}}" class="OrderPageBtn btn btn-primary mt-2">View Product</a>
+        {{/if}}
+
         <h6 class="mt-4">Payment Method - Order status</h6>
         <div class="bottum_options">
           <span>{{this.paymentMethod}}</span>
@@ -90,7 +39,8 @@
           </div>
           <div id="snackbar">Order Deleting..</div>
           {{else}}
-          <a href="/cancelOrder/{{this._id}}" class="OrderPageBtn btn btn-primary">Cancell</a>
+          {{!-- <a href="/cancelOrder/{{this._id}}" class="OrderPageBtn btn btn-primary">Cancell</a> --}}
+          <a onclick="cancellOrder('{{this._id}}')" class="OrderPageBtn btn btn-primary">Cancell</a>
           {{/if}}
         </div>
         <div class="Ordder-priceDetail">
@@ -106,3 +56,40 @@
 
   </div>
 </div>
+
+<script>
+  function cancellOrder(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "are you sure to cancell the order!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancell it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Canceleld!',
+          'Your order has been cancelled.',
+          'success'
+        ).then((response) => {
+          if (response) {
+            $.ajax({
+              url: '/cancelOrder/' + id,
+              method: 'get',
+              success: (resp) => {
+                if (resp) {
+                  location.href = '/orderList'
+                }
+              }
+            })
+
+          }
+        })
+      }
+    })
+
+
+  }
+</script>

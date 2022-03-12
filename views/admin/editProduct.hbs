@@ -1,93 +1,121 @@
-
 <div class="col-lg-9" style="margin-left: auto;margin-right: auto;">
   <h4>Edit Product</h4>
-<form action="/admin/editProduct/{{products._id}}"  method="post" enctype="multipart/form-data" >
-  <div class="form-group">
-    <label for="exampleInputEmail1">Name of product</label>
-    <input type="text" name="proName" class="form-control"   placeholder="Enter name" value="{{products.proName}}"  maxlength="60">
-    <small id="emailHelp" class="form-text text-muted">enter your product name </small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Catagories</label>
-    <select class="form-select" aria-label="Default select example" name="Catagories">
+  <form action="/admin/editProduct/{{products._id}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name of product</label>
+      <input type="text" name="proName" class="form-control" placeholder="Enter name" value="{{products.proName}}"
+        maxlength="60">
+      <small id="emailHelp" class="form-text text-muted">enter your product name </small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Catagories</label>
+      <select class="form-select" aria-label="Default select example" name="Catagories">
         <option selected value="{{products.Catagories}}">{{products.Catagories}}</option>
         <option value="boys">boys</option>
         <option value="girls">girls</option>
-         <option value="Gents">Gents</option>
-         <option value="ladies">ladies</option>
-    </select> 
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Sub-Catagories</label>
-    <select class="form-select" aria-label="Default select example" name="subCatagories">
+        <option value="Gents">Gents</option>
+        <option value="ladies">ladies</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Sub-Catagories</label>
+      <select class="form-select" aria-label="Default select example" name="subCatagories">
         <option selected value="{{products.subCatagories}}">{{products.subCatagories}}</option>
         <option value="Sneakers">Sneakers</option>
         <option value="running">running</option>
         <option value="formal">formal</option>
-         <option value="boots">boots</option>
-         <option value="Casuals">Casuals</option>
-    </select> 
-  </div>
-  <div class="form-group"> 
-    <label for="exampleInputPassword1">Brand</label>
-    <select class="form-select" aria-label="Default select example" name="brand">
+        <option value="boots">boots</option>
+        <option value="Casuals">Casuals</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Brand</label>
+      <select class="form-select" aria-label="Default select example" name="brand">
         <option selected value="{{products.brand}}">{{products.brand}}</option>
         <option value="Adidas">Adidas</option>
         <option value="nike">nike</option>
-         
-    </select> 
-  </div>
-  
-  <div class="form-row">
-    <div class="col-4">
-      <label>Price</label>
-      <input type="text" name="price" "form-control" placeholder="price" value="{{products.price}}">
-    </div>
-    <div class="col">
-      <label>Tax</label>
-      <input type="text" name="tax" class="form-control" placeholder="tax" value="{{products.tax}}">
-    </div>
-    <div class="col">
-      <label>landing Cost</label>
-      <input type="text" name="landingCost" class="form-control" placeholder="landing cost" value="{{products.landingCost}}">
-    </div>
-  </div>
-  <br>
-  <div class="form-row">
-    <div class="col">
-      <label>color</label>
-    <input type="text" name="color" class="form-control" placeholder="Color" value="{{products.color}}">
-    </div>
-    <div class="form-group">
-    <label for="exampleInputPassword1">Size</label>
-      <select class="form-select" name="size" aria-label="Default select example" style="border;">
-        <option selected value="{{products.size}}">{{products.size}}</option>
-        <option value="6">6</option>
-        <option value="7"> 7</option>
-         <option value="8">8</option>
-      </select> 
-    </div>
-  </div>
-  <br>
-  <img src="/product-images/{{products._id}}.jpg" alt="something went wrong" style="width:100px;height: auto;">
-  <div class="custom-file">
-    
-  <input type="file" name="image" class="custom-file-input" id="image">
-  <label class="custom-file-label" for="customFile">Choose file</label>
-</div>
 
-<br>
-  <div class="form-check">
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="col-4">
+        <label>Price</label>
+        <input type="text" name="price" "form-control" placeholder="price" value="{{products.price}}">
+      </div>
+      <div class="col">
+        <label>Tax</label>
+        <input type="text" name="tax" class="form-control" placeholder="tax" value="{{products.tax}}">
+      </div>
+      <div class="col">
+        <label>landing Cost</label>
+        <input type="text" name="landingCost" class="form-control" placeholder="landing cost"
+          value="{{products.landingCost}}">
+      </div>
+    </div>
     <br>
-    <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-<br>
+    <div class="form-row">
+      <div class="col">
+        <label>color</label>
+        <input type="text" name="color" class="form-control" placeholder="Color" value="{{products.color}}">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Size</label>
+        <select class="form-select" name="size" aria-label="Default select example" style="border;">
+          <option selected value="{{products.size}}">{{products.size}}</option>
+          <option value="6">6</option>
+          <option value="7"> 7</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <img src="/product-images/{{products._id}}a.jpg" alt="something went wrong" style="width:100px;height: auto;">
+    <img src="/product-images/{{products._id}}b.jpg" alt="something went wrong" style="width:100px;height: auto;">
+    <img src="/product-images/{{products._id}}c.jpg" alt="something went wrong" style="width:100px;height: auto;">
+
+    <div class="custom-file">
+
+      {{!-- <input type="file" name="image" class="custom-file-input" id="image">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+
+      <input type="file" name="image" class="custom-file-input" id="image">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+      <input type="file" name="image" class="custom-file-input" id="image">
+      <label class="custom-file-label" for="customFile">Choose file</label> --}}
+
+
+      <div class="inputBody">
+        <div class='pro_file-input'>
+          <input type='file' name="image1" id="image1" src="/product-images/{{products._id}}a.jpg">
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>
+        <div class='pro_file-input'>
+          <input type='file' name="image2" id="image2">
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>
+        <div class='pro_file-input'>
+          <input type='file' name="image3" id="image3">
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>  
+      </div>
+    </div>
+
+    <br>
+    <div class="form-check">
+      <br>
+      <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <br>
 
 
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 
-  <br>
-</form>
+    <br>
+  </form>
 </div>

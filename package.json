@@ -14,8 +14,9 @@
     "croppie": "^2.6.5",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
+    "egalink-toasty.js": "^1.5.5",
     "express": "~4.16.1",
-    "express-fileupload": "^1.2.1",
+    "express-fileupload": "^1.3.1",
     "express-handlebars": "^6.0.2",
     "express-hbs": "^2.4.0",
     "express-session": "^1.17.2",
@@ -25,15 +26,18 @@
     "module": "^0.0.1",
     "moment": "^2.29.1",
     "mongod": "^2.0.0",
-    "mongodb": "^4.3.1",
+    "mongodb": "^4.4.1",
     "morgan": "~1.9.1",
     "mv": "^2.1.1",
     "node": "^17.2.0",
     "nodemon": "^2.0.15",
     "razorpay": "^2.8.0",
-    "renovate": "^31.28.2",
+    "renovate": "^31.97.3",
     "swal": "^0.1.0",
+    "sweet-alert": "^2.0.5",
     "sweetalert": "^2.1.2",
-    "twilio": "^3.71.3"
+    "sweetalert2": "^11.4.4",
+    "toastify-js": "^1.11.2",
+    "twilio": "^3.75.0"
   }
 }

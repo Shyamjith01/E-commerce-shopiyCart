@@ -3,7 +3,7 @@
   <form action="/admin/add-product" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="exampleInputEmail1">Name of product</label>
-      <input type="text" name="proName" class="form-control" placeholder="Enter name" >
+      <input type="text" name="proName" class="form-control" placeholder="Enter name">
       <small id="emailHelp" class="form-text text-muted">enter your product name </small>
     </div>
     <div class="form-group">
@@ -69,25 +69,33 @@
     <br>
     <h5 class="productImg_name">product images</h5>
     <div class="custom-file">
-      
-      {{!-- 1st image --}}
-      <input type="file" name="image1" class="custom-file-input item-img" id="image1" accept="image/*">
-      <label class="custom-file-label" for="customFile">Choose image 1</label>
-      {{!-- 2nd image --}}
-      <input type="file" name="image2" class="custom-file-input item-img" id="image2"  accept="image/*">
-      <label class="custom-file-label" for="customFile" style="top: 3rem;">Choose image 2</label>
-      {{!-- 3rd image --}}
-      <input type="file" name="image3" class="custom-file-input item-img" id="image3" accept="image/*">
-      <label class="custom-file-label" for="customFile" style="top: 6rem;">Choose image 3</label>
-      
+
+     
+      <div class="inputBody">
+        <div class='pro_file-input'>
+          <input type='file' name="image1" id="image1" >
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>
+        <div class='pro_file-input'>
+          <input type='file' name="image2" id="image2">
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>
+        <div class='pro_file-input'>
+          <input type='file' name="image3" id="image3">
+          <span class='button'>Choose</span>
+          <span class='label' data-js-label>No file selected</label>
+        </div>
+      </div>
 
 
 
       <div class="container text-center">
-        
+
         <div class="form-check">
           <br>
-          
+
         </div>
         <br>
 

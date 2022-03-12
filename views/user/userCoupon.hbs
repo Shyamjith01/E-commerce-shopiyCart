@@ -1,16 +1,4 @@
-{{!-- <section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Contact Us</h1>
-                <nav class="d-flex align-items-center">
-                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="category.html">Coupon</a>
-                </nav>
-            </div>
-        </div>
-    </div>
-</section> --}}
+
 <section style="margin-top: 12rem;margin-bottom: 6rem;">
 
     <div class="container">
@@ -20,61 +8,6 @@
 
 
         <div class="row">
-
-
-            {{!-- <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                    <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
-                            class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Coupon</th>
-                                <th>Offer</th>
-                                <th>Starting Date</th>
-                                <th>Expiry</th>
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each coupons}}
-                            <tr>
-                                <td>{{this.Coupon}}</td>
-                                <td>{{this.offer}}</td>
-                                <td>{{this.starting}}</td>
-                                <td><span class="badge badge-success">{{this.expiry}}</span></td>
-
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer"></div>
-            </div> --}}
-            {{!-- <table cellspacing="0" class="cart_table">
-                <tr class="Ordertable_Header">
-
-                    <th>Coupon</th>
-                    <th>Offer</th>
-                    <th>Starting Date</th>
-                    <th>Expiry</th>
-                </tr>
-                {{#each coupons}}
-                <tr class="tr">
-
-                    <td>{{this.Coupon}}</td>
-                    <td>{{this.offer}}%</td>
-                    <td>{{this.starting}}</td>
-                    <td><span>{{this.expiry}}</span></td>
-
-                </tr>
-
-                {{/each}}
-            </table> --}}
             <table class="wishListTable mb-5 text-center">
                 
 
@@ -96,6 +29,15 @@
                         <td data-label="Period">{{this.expiry}}</td>
                     </tr>
                     {{/each}}
+
+                    {{#if coupon}}
+                   
+
+                    {{else}}
+                     <h1 class="couponNotFound">You have No any coupons !</h1>
+
+                    {{/if}}
+
 
                 </tbody>
             </table>

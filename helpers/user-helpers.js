@@ -8,7 +8,7 @@ const { userInfo } = require('os');
 const { pipeline } = require('stream');
 const Razorpay = require('razorpay')
 let moment = require('moment');
-const { ObjectId } = require('mongodb');
+const { ObjectId, ObjectID } = require('mongodb');
 const { default: swal } = require('sweetalert');
 var instance = new Razorpay({
     key_id: process.env.key_id,
@@ -327,8 +327,9 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let dateIso = new Date()
             let date = moment(dateIso).format('YYYY/MM/DD')
+            console.log(date,"now dateeee");
             let time = moment(dateIso).format('HH:mm:ss')
-            date = moment(Date).format('DD/MM/YYYY')
+            
             console.log(product, "that is the details incart");
             let status = order['payment-method'] === 'COD' ? 'placed' : 'pending'
             console.log("finish");
@@ -338,14 +339,14 @@ module.exports = {
                     phone: order.email,
                     adress1: order.adress1,
                     adress2: order.adress2,
-                    pincode: order.pincode
+                    pincode: order.userpincode
                 },
                 userId: objectId(UserId),
                 paymentMethod: order['payment-method'],
                 product: product,
                 totalAmount: total,
                 status: status,
-                dateIso: dateIso,
+                dateIso: date,
                 time: time,
                 buyNow: order.buyNow,
                 Date: date
@@ -376,41 +377,7 @@ module.exports = {
             resolve(orders)
         })
     },
-    getOrderProducts: (orderId) => {
-        return new Promise(async (resolve, reject) => {
-            let OrderProducts = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
-                {
-                    $match: {
-                        _id: objectId(orderId)
-                    }
-                },
-                {
-                    $unwind: '$product'
-                },
-                {
-                    $project: {
-                        item: '$product.item',
-                        quantity: '$product.quantity'
-                    }
-                },
-                {
-                    $lookup: {
-                        from: collection.PRODUCT_COLLECTION,
-                        localField: 'item',
-                        foreignField: '_id',
-                        as: 'product'
-                    }
-                },
-                {
-                    $project: {
-                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
-                    }
-                }
-            ]).toArray()
-            console.log(OrderProducts, "this is order2");
-            resolve(OrderProducts)
-        })
-    },
+
     getOrder: (orderId) => {
         return new Promise(async (resolve, reject) => {
             let orders = await db.get().collection(collection.ORDER_COLLECTION).findOne({ _id: objectId(orderId) })
@@ -461,8 +428,8 @@ module.exports = {
     ,
     getUserOrders: (id) => {
         return new Promise(async (resolve, reject) => {
-            let orders = await db.get().collection(collection.ORDER_COLLECTION).find({ userId: objectId(id) }).toArray()
-            console.log((orders, "this is the order inside of see all"));
+            let orders = await db.get().collection(collection.ORDER_COLLECTION).find({ userId: objectId(id) }).sort({ $natural: -1 }).toArray()
+            console.log((orders, "this is the order inside of see all"));    
             resolve(orders)
         })
     },
@@ -718,11 +685,11 @@ module.exports = {
     },
     //get coupon details
     getUserCoupon: () => {
-        let today= new Date()
-        console.log(today,"that is the date");
-        
+        let today = new Date()
+        console.log(today, "that is the date");
+
         return new Promise(async (resolve, reject) => {
-            let coupons = await db.get().collection(collection.COUPON_COLLECTION).find({endDateISo:{ $gte:today }}).toArray()
+            let coupons = await db.get().collection(collection.COUPON_COLLECTION).find({ endDateISo: { $gte: today } }).toArray()
             resolve(coupons)
         })
     },
@@ -856,10 +823,50 @@ module.exports = {
             })
         })
     },
-    getOrderProducts: (orderId) => {
-        console.log("yes inside");
+    getOrderProductss: (OrderID) => {
         return new Promise(async (resolve, reject) => {
-            let orderItem = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+            let OrderedProduct = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                {
+                    $match: { _id: objectId(OrderID) }
+                },
+                {
+                    $unwind: '$product'
+                },
+                {
+                    $project: {
+                        item: '$product.item',
+                        quantity: '$product.quantity'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localField: 'item',
+                        foreignField: '_id',
+                        as: 'product'
+                    }
+                },
+                {
+                    $project: {
+                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
+                    }
+                }
+            ]).toArray()
+            console.log(OrderedProduct, "this is the single orrder");
+            resolve(OrderedProduct)
+
+        })
+    },
+    getBuyNowTotal: (pId) => {
+        return new Promise(async (resolve, reject) => {
+            let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(pId) })
+            console.log(product.price, "getBuyNowTotal price");
+            resolve(product.price)
+        })
+    },
+    getUserCartOrder: (orderId) => {
+        return new Promise(async (resolve, reject) => {
+            let OrderProduct = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
                 {
                     $match: { _id: objectId(orderId) }
                 },
@@ -882,20 +889,18 @@ module.exports = {
                 },
                 {
                     $project: {
-                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] },
-
+                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
                     }
-                }
+                },
+                // {
+                //     $group:{
+                //         _id:null,
+                //         total:{$sum:{$multiply:[{'$toInt':'$quantity'},{'$toInt':'$product.price'}]}}
+                //     }
+                // }
             ]).toArray()
-            console.log(orderItem, "order 2");
-            resolve(orderItem)
-        })
-    },
-    getBuyNowTotal: (pId) => {
-        return new Promise(async (resolve, reject) => {
-            let product = await db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(pId) })
-            console.log(product.price, "getBuyNowTotal price");
-            resolve(product.price)
+            console.log(OrderProduct);
+            resolve(OrderProduct)
         })
     }
 }

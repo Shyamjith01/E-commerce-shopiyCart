@@ -53,7 +53,7 @@
 								 {{Suser}}
 								 {{else}}
 								 {{#if user}}
-								 {{user.sname}}
+								 {{user.fname}}
 								 {{else}}
 								 account
 								 {{/if}}
@@ -79,9 +79,10 @@
 									<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 									{{/if}}
 									{{/if}}
-									<li class="nav-item"><a class="mobileCartName nav-link" href="/cart">Cart</a></li>
+									<li class="nav-item"><a class="mobileCartName nav-link" style="display:none;" href="/cart">Cart</a></li>
 								</ul>
 							</li>
+							
 							
 							{{#if contact}}
 							<li class="nav-item active"><a class="nav-link" href="/contact">Contact</a></li>
@@ -93,7 +94,7 @@
 							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"><span class="badge ">{{cartCount}}</span></span></a></li>
 						</ul> --}}
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"><span class="badge ">{{cartCount}}</span></span></a></li>
+							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"><span class="badge " id="cartCount">{{cartCount}}</span></span></a></li>
 						</ul>
 					</div>
 				</div>

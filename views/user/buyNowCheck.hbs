@@ -62,13 +62,17 @@
                 </div>
                 <div class="adress_card col-lg-12">
                     {{#each adress}}
-                    <div class="eachAdress_checkout col-lg-4">
-                        <h6>{{this.name}} -{{this.mobileNumber}}</h6>
+                    <div class="eachAdress_checkout col-lg-4 col-sm-12 col-md-6">
+                        <h6>{{this.name}} - {{this.mobileNumber}}</h6>
                         <p>{{this.adress}},{{this.district}} District</p>
                         <span>{{this.pincode}}</span>
 
-                        <a onclick="fillAdress('{{this.name}}','{{this.mobileNumber}}','{{this.email}}','{{this.adress}}','{{this.district}}','{{this.pincode}}','{{this.Locality}}')"
+                        {{!-- <a
+                            onclick="fillAdress('{{this.name}}','{{this.mobileNumber}}','{{this.email}}',`{{this.adress}}`,'{{this.district}}','{{this.pincode}}','{{this.Locality}}')"
+                            class="AutoFill btn">Choose</a> --}}
+                        <a onclick="fillOne('{{this.name}}','{{this.mobileNumber}}','{{this.email}}','{{this.district}}','{{this.pincode}}','{{this.Locality}}',`{{this.adress}}`)"
                             class="AutoFill btn">Choose</a>
+
                     </div>
                     {{/each}}
 
@@ -116,7 +120,7 @@
                         <div class="form-group">
                             <label for="email">Company name (optional)</label>
                             <input type="text" class="form-control" id="companyName" name="companyName"
-                                placeholder="Enter your company name" >
+                                placeholder="Enter your company name">
                         </div>
 
                         <div class="form-group  col-md-12" style="margin-left: -12px;">
@@ -138,7 +142,7 @@
 
                         {{!-- <div class="col-md-12 form-group mb-5" style="    margin-left: -1rem;}">
                             <label for="city">District</label>
-                            <select type="text"   id="District" spellcheck="true"  class="form-control">
+                            <select type="text" id="District" spellcheck="true" class="form-control">
                                 <option id="District" value="" selected>Choose...</option>
                                 <option value="malapuram">Malappuram</option>
                             </select>
@@ -157,7 +161,8 @@
                             <label for="address2">Pincode
                                 <span class="text-muted"></span>
                             </label>
-                            <input type="text" class="form-control" name="userpincode" id="userpincode" placeholder="Post code">
+                            <input type="number" class="form-control" name="userpincode" id="userpincode"
+                                placeholder="Post code">
                         </div>
                         <input type="text" name="userId" id="" value="{{user._id}}" hidden>
 
@@ -188,14 +193,14 @@
 
 
                     </div>
-                    
+
                     <div class="col-lg-4">
                         <div class="order_box">
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <span>products</span>
                                 <li><a href="#" style="color: black;">⚫{{product.proName}} </a></li>
-                                
+
 
                             </ul>
                             <ul class="list list_2">
@@ -204,7 +209,7 @@
                                 <li><a href="#">Total <span>₹{{AllTotal}}.00</span></a></li>
                             </ul>
 
-                            
+
                             {{!-- payment methods --}}
                             <h2 class="mb-4 mt-4">Payment</h2>
                             <div class="payment_form-check">
@@ -221,10 +226,10 @@
                                     <label for="paypal" class="form-check-label">Cash on Delivery</label>
 
                                 </div>
-                            <button id="checkout_btn" class="btn  bt-lg btn-block" type="submit"
-                                style="background: #ffa426;color: white;">Continue to Checkout</button>
+                                <button id="checkout_btn" class="btn  bt-lg btn-block" type="submit"
+                                    style="background: #ffa426;color: white;">Continue to Checkout</button>
+                            </div>
                         </div>
-                    </div>
             </form>
         </div>
 
@@ -245,7 +250,7 @@
             data: $('#buyNowcheckout').serialize(),
             success: (response) => {
                 if (response.codeSuccess) {
-                    location.href = '/confirmation'
+                    location.href = '/BuynowConfirmation'
                 } else {
                     console.log(response.response, "response")
                     razorpayPayment(response.response)
@@ -254,7 +259,7 @@
             }
         })
     })
-    function razorpayPayment(order) {     
+    function razorpayPayment(order) {
         console.log("inside of razorpayPayment")
         let amount = parseInt(order.amount)
         var options = {
@@ -373,13 +378,38 @@
         })
     }
     function fillAdress(name, mobileNumber, email, adress, district, pincode, Locality) {
-        document.getElementById('fname').value = name
+        alert(pincode)
+        document.getElementById('fname').value = name;
         document.getElementById('mobileNumber').value = mobileNumber
         document.getElementById('email').value = email
         document.getElementById('adress').value = adress
         document.getElementById('District').value = district
         document.getElementById('town').value = Locality
         document.getElementById('userpincode').value = pincode
+
+    }
+    function fillOne(name, mobileNumber, email, district, pincode, Locality, adress) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'adress auto-filled'
+        })
+        document.getElementById('fname').value = name;
+        document.getElementById('mobileNumber').value = mobileNumber
+        document.getElementById('email').value = email
+        document.getElementById('adress').value = adress
+        document.getElementById('town').value = Locality
+        document.getElementById('userpincode').value = pincode;
 
     }
 </script>

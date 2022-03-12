@@ -24,7 +24,9 @@
 					{{/if}}
 					<div style="display: flex;">
 						<h2 style="font-family: Roboto,Arial,sans-serif;" class="mr-3">₹{{product.price}}</h2>
-						<span class="offerPrice">{{product.landingCost}}</span>
+						{{#if product.offer}}
+						<span class="offerPrice">{{product.actualPrice}}</span>
+						{{/if}}
 						{{#if product.offerPercentage}}
 						<span class="offerPer">{{product.offerPercentage}}% off</span>
 						{{/if}}

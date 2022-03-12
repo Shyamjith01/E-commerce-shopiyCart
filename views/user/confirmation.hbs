@@ -1,25 +1,9 @@
-<!-- Start Banner Area -->
-{{!-- <section class="banner-area organic-breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-			<div class="col-first">
-				<h1>Confirmation</h1>
-
-				<nav class="d-flex align-items-center">
-					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="category.html">Confirmation</a>
-				</nav>
-			</div>
-		</div>
-	</div>
-</section> --}}
-<!-- End Banner Area -->
-
 <!--================Order Details Area =================-->
 <section class="order_details section_gap" style="margin-top: 7rem;">
 	<div class="container">
 		<div style="margin-left: auto;margin-right: auto;width: fit-content;">
-			<img src="/succces/succes.png" alt="" style="width: 10rem;width: 17rem;margin-top: -7rem;margin-bottom: -2rem;">
+			<img src="/succces/succes.png" alt=""
+				style="width: 10rem;width: 17rem;margin-top: -7rem;margin-bottom: -2rem;">
 		</div>
 		<h3 class="title_confirmation">Thank you. Your order has been received.</h3>
 		<div class="row order_d_inner">
@@ -28,9 +12,9 @@
 				<div class="details_item">
 					<h4>Order Info</h4>
 					<ul class="list">
-						<li><a href="#"><span>Order number</span> : 60235</a></li>
+						<li><a href="#"><span>Order number</span> : 60236</a></li>
 						<li><a href="#"><span>Date</span> : {{this.Date}}</a></li>
-						<li><a href="#"><span>Total</span> : {{this.totalAmount}}</a></li>
+						<li><a href="#"><span>Total</span> : ₹{{this.totalAmount}}</a></li>
 						<li><a href="#"><span>Payment method</span> : {{this.paymentMethod}}</a></li>
 					</ul>
 				</div>
@@ -55,8 +39,8 @@
 					<h4>Order Info</h4>
 					<ul class="list">
 						<li><a href="#"><span>Order number</span> : 60235</a></li>
-						<li><a href="#"><span>Date</span> : {{this.Date}}</a></li>
-						<li><a href="#"><span>Total</span> : {{this.totalAmount}}</a></li>
+						<li><a href="#"><span>Date</span> : {{this.dateIso}}</a></li>
+						<li><a href="#"><span>Total</span> :₹ {{this.totalAmount}}</a></li>
 						<li><a href="#"><span>Payment method</span> : {{this.paymentMethod}}</a></li>
 					</ul>
 				</div>
@@ -88,7 +72,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						{{#each orders}}
+						{{#if buyNow}}
+						<tr>
+							<td>
+								<p>{{Products.proName}}</p>
+							</td>
+							<td>
+								<h5>x 1</h5>
+							</td>
+							<td>
+								<p>₹{{Products.price}}.00</p>
+							</td>
+						</tr>
+						{{/if}}
+
+						{{#if cart}}
+						{{#each Products}}
 						<tr>
 							<td>
 								<p>{{this.product.proName}}</p>
@@ -101,6 +100,10 @@
 							</td>
 						</tr>
 						{{/each}}
+
+						{{/if}}
+
+
 
 						<tr>
 							<td>

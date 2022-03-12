@@ -44,7 +44,8 @@
 					<div class="each_adress">
 						<span class="name_num">{{this.name}} - {{this.mobileNumber}}</span> 
 						<div class="del_icon">
-							<a href="/del_adress/{{this._id}}"><span class="material-icons">delete</span></a>
+							{{!-- <a href="/del_adress/{{this._id}}" onclick="adressDelete('{{this._id}}')"><span class="material-icons">delete</span></a> --}}
+							<a onclick="adressDelete('{{this._id}}')"><span class="material-icons">delete</span></a>
 						</div>
 						<br>
 						<span class="adress_list">{{this.adress}},Malappuram District ,Kerala
@@ -173,7 +174,7 @@
 					</div>
 					<div class="btn-block">
 						<button class="save_adress" type="submit">Save</button>
-						<a  class="save_adress btn" id="canell_adress">Cancell</a>
+						<a  class="cancellSaveAdress btn" id="canell_adress">Cancell</a>
 
 					</div>
 					

@@ -1,58 +1,18 @@
-<!-- Start Banner Area -->
-<section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <h1>Checkout</h1>
-                <nav class="d-flex align-items-center">
-                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="single-product.html">Checkout</a>
-                </nav>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Banner Area -->
 
 <!--================Checkout Area =================-->
-<section class="checkout_area section_gap">
+<section class="checkout_area section_gap" style="margin-top: 5rem;">
     <div class="container">
-        {{!-- <div class="returning_customer">
-            <div class="check_title">
-                <h2>Returning Customer? <a href="#">Click here to login</a></h2>
-            </div>
-            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-                customer, please proceed to the Billing & Shipping section.</p>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" id="name" name="name">
-                    <span class="placeholder" data-placeholder="Username or Email"></span>
-                </div>
-                <div class="col-md-6 form-group p_star">
-                    <input type="password" class="form-control" id="password" name="password">
-                    <span class="placeholder" data-placeholder="Password"></span>
-                </div>
-                <div class="col-md-12 form-group">
-                    <button type="submit" value="submit" class="primary-btn">login</button>
-                    <div class="creat_account">
-                        <input type="checkbox" id="f-option" name="selector">
-                        <label for="f-option">Remember me</label>
-                    </div>
-                    <a class="lost_pass" href="#">Lost your password?</a>
-                </div>
-            </form>
-        </div> --}}
+      
         <div class="cupon_area">
             <div class="check_title mb-3">
                 <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
             </div>
             <input type="text" id="couponInput" placeholder="Enter coupon code" style="margin-left: 0rem;"
                 class="col-12w">
-            
+
             <input type="text" id="couponTotal" name="Total" value="{{AllTotal}}" hidden>
             <a class="couponButton btn tp_btn" id="couponBtn" onclick="couponApply()">Apply Coupon</a>
             {{!-- Error handling of coupons --}}
-            
             <div class="mt-2">
                 <div class="alert alert-danger" style="display: none;" id="couponUsed" role="alert">
                     This Coupon was redeemed
@@ -71,6 +31,24 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div class="check_title mb-3">
+                <h2>Adress </h2>
+            </div>
+            <div class="adress_card col-lg-12">
+                {{#each adress}}
+                <div class="eachAdress_checkout col-lg-4 col-sm-12 col-md-6">
+                    <h6>{{this.name}} -{{this.mobileNumber}}</h6>
+                    <p>{{this.adress}},{{this.district}} District</p>
+                    <span>{{this.pincode}}</span>
+
+                    <a onclick="fillOne('{{this.name}}','{{this.mobileNumber}}','{{this.email}}','{{this.district}}','{{this.pincode}}','{{this.Locality}}',`{{this.adress}}`)"
+                        class="AutoFill btn">Choose</a>
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
 
         <div class="col-md-12 container bg-default">
 
@@ -83,14 +61,14 @@
                     <div class="col-lg-8 col-12">
                         <div class="form-group">
                             <label for="email">Your name</label>
-                            <input type="text" class="form-control" id="companyName" placeholder="Enter your  name"
+                            <input type="text" class="form-control" id="fname" placeholder="Enter your  name"
                                 name="name" required>
                         </div>
                         <div class="form-row">
-                            <div class="col-12 col-md-6 form-group">
+                            <div class="col-12 col-md-12 form-group">
                                 <label for="firstname">Mobile Number</label>
-                                <input type="text" class="form-control" id="mobileNumber" name="mobileNumber"
-                                    placeholder="Enter mobile number" name="mobileNumber">
+                                <input type="number" class="form-control" id="mobileNumber" name="mobileNumber"
+                                    placeholder="Enter mobile number" name="mobileNumber" required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
                                 </div>
@@ -99,7 +77,7 @@
                             <div class="col-md-12 form-group">
                                 <label for="lastname">Email adress</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="you@example.com" name="email">
+                                    placeholder="you@example.com" name="email" required>
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
@@ -108,12 +86,12 @@
 
 
                         <div class="form-group">
-                            <label for="email">Company name</label>
+                            <label for="email">Company name (optional)</label>
                             <input type="text" class="form-control" id="companyName" name="companyName"
-                                placeholder="Enter your company name" required>
+                                placeholder="Enter your company name">
                         </div>
 
-                        <div class="form-group  col-12" style="margin-left: -12px;">
+                        <div class="form-group  col-md-12" style="margin-left: -12px;">
                             <label for="adress">Address 1</label>
                             <input type="text" class="form-control" id="adress" name="adress1"
                                 placeholder="1234 Main Street" required>
@@ -126,31 +104,33 @@
                             <label for="address2">Address 2
                                 <span class="text-muted">(Optional)</span>
                             </label>
-                            <input type="text" class="form-control" id="adress2" name="adress2" placeholder="Flat No">
+                            <input type="text" class="form-control" id="adress2" name="adress2" placeholder="adress 2">
                         </div>
+                        <input type="text" id="quantity" name="quantity" value="{{quantity}}" hidden>
 
-                        <div class="col-md-12 form-group mb-5" style="    margin-left: -1rem;}">
+                        {{!-- <div class="col-md-12 form-group mb-5" style="    margin-left: -1rem;}">
                             <label for="city">District</label>
-                            <select type="text" class="form-control" id="city">
-                                <option value>Choose...</option>
+                            <select type="text" id="District" spellcheck="true" class="form-control">
+                                <option id="District" value="" selected>Choose...</option>
                                 <option value="malapuram">Malappuram</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please provide a valid city.
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="address2">Town / City
                                 <span class="text-muted"></span>
                             </label>
-                            <input type="text" class="form-control" id="adress2" name="town" placeholder="Town / city">
+                            <input type="text" class="form-control" id="town" name="town" placeholder="Town / city">
                         </div>
                         <div class="form-group">
                             <label for="address2">Pincode
                                 <span class="text-muted"></span>
                             </label>
-                            <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Post code">
+                            <input type="text" class="form-control" name="userpincode" id="userpincode"
+                                placeholder="Post code">
                         </div>
                         <input type="text" name="userId" id="" value="{{user._id}}" hidden>
 
@@ -170,18 +150,9 @@
 
                         <hr>
 
-                        <h4 class="mb-4">Payment</h4>
 
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" id="credit" name="payment-method"
-                                value="online-Payment" required>
-                            <label for="credit" class="form-check-label">Razorpay</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" id="paypal" name="payment-method" value="COD"
-                                required>
-                            <label for="paypal" class="form-check-label">Cash on Delivery</label>
-                        </div>
+
+
 
 
 
@@ -196,22 +167,34 @@
                             <ul class="list">
                                 <span>products</span>
                                 {{#each products}}
-                                
-                                <li><a href="#" style="color: black;">⚫{{this.product.proName}}  </a></li>
+
+                                <li><a href="#" style="color: black;">⚫{{this.product.proName}} </a></li>
                                 {{/each}}
-                               
-                                
+
+
                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span class="shipping">Flat rate: $50.00</span></a></li>
-                                <li><a href="#">Total <span>${{AllTotal}}.00</span></a></li>
+                                <li><a href="#">Subtotal <span>₹2160.00</span></a></li>
+
+                                <li><a href="#">Total <span>₹{{AllTotal}}.00</span></a></li>
                             </ul>
 
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
-                                <label for="f-option4">I’ve read and accept the </label>
-                                <a href="#">terms & conditions*</a>
+                            <h2 class="mb-4 mt-4">Payment</h2>
+                            <div class="payment_form-check">
+                                <div class="payment_method_check">
+                                    <input type="radio" class="form-check-input" id="credit" name="payment-method"
+                                        value="Razorpay" required>
+                                    <label for="credit" class="form-check-label">Razorpay</label>
+                                </div>
+                            </div>
+                            <div class="payment_form-check">
+                                <div class="payment_method_check">
+                                    <input type="radio" class="form-check-input" id="paypal" name="payment-method"
+                                        value="COD" required>
+                                    <label for="paypal" class="form-check-label">Cash on Delivery</label>
+
+                                </div>
+
                             </div>
                             <button id="checkout_btn" class="btn  bt-lg btn-block" type="submit"
                                 style="background: #ffa426;color: white;">Continue to Checkout</button>
@@ -232,17 +215,17 @@
 <!-- End footer Area -->
 
 <script>
-    function couponApply(){
-        let couponCode= document.getElementById('couponInput').value
+    function couponApply() {
+        let couponCode = document.getElementById('couponInput').value
         let couponTotal = document.getElementById('couponTotal').value
 
         $.ajax({
-            url:'/couponApply',
-            data:{
-                Coupon:couponCode,
-                Total:couponTotal
+            url: '/couponApply',
+            data: {
+                Coupon: couponCode,
+                Total: couponTotal
             },
-            method:'post',
+            method: 'post',
             success: (response) => {
                 console.log(response)
                 if (response.couponSuccess) {
@@ -291,5 +274,29 @@
                 }
             }
         })
+    }
+    function fillOne(name, mobileNumber, email, district, pincode, Locality, adress) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'adress auto-filled'
+        })
+        document.getElementById('fname').value = name;
+        document.getElementById('mobileNumber').value = mobileNumber
+        document.getElementById('email').value = email
+        document.getElementById('adress').value = adress
+        document.getElementById('town').value = Locality
+        document.getElementById('userpincode').value = pincode;
+
     }
 </script>

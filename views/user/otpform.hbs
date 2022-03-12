@@ -1,14 +1,16 @@
 <div class="container new-login-area " style="margin-top: 9rem;margin-bottom: 7rem;">
   <div id='sign-in' class='login-setup-section col-lg-6'>
     <form action="/loginOtp" method="post" id="otpMobNumberForm">
-      {{!-- {{#if noUser}}
-      <h5 style="color: red;">User Not Found</h5>
-      {{/if}} --}}
+
       <h3 class="request-otp-header">Please verify your mobile number</h3>
+
       <div class="form-group login-label">
         <label for="inputnumber">mobile number</label>
         <input type="number" name="number" class="form-control input-edit" placeholder='Enter mobile number'
           id="number">
+        {{#if noUser}}
+        <h5 style="color: red;" class="invaildUserErr">User Not Found</h5>
+        {{/if}}
       </div>
       {{!-- <button type="button" class="btn btn-default btn-lg btn-block request-otp" id='request-otp'>Get OTP</button>
       --}}
@@ -21,10 +23,10 @@
 <script>
   $(document).ready(function () {
     $('#otpMobNumberForm').validate({
-      rules:{
-        number:{
-          required:true,
-          minlength:10
+      rules: {
+        number: {
+          required: true,
+          minlength: 10
         }
       }
     })

@@ -1,4 +1,4 @@
-<h1 style="margin-left: auto;margin-right: auto;padding-left: 1rem;">User list</h1>
+<h1 class="text-center" style="margin-left: auto;margin-right: auto;padding-left: 1rem">User list</h1>
 
 
 
@@ -26,8 +26,8 @@
             <td data-th="Catagory">{{this.sname}}</td>
             <td data-th="brand">{{this.number}}</td>
             <td data-th="Price">{{this.email}}</td>
-            <td><a href="/admin/block-user/{{this._id}}" style="color: red;"><input type="btn" class="btn bg-danger"
-                  style="color: white;" value="Block" name="" id=""></span></a></td>
+            <td><a onclick="blockUser('{{this._id}}')" style="color: red;"><span class="material-icons">block</span></a>
+            </td>
           </tr>
           {{/each}}
 
@@ -37,3 +37,35 @@
     <div class="card-footer"></div>
   </div>
 </div>
+
+<script>
+  function blockUser(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "are you sure to block the User ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: '/admin/block-user/' + id,
+          method: 'get',
+          success: (response) => {
+            if (response.status) {
+              Swal.fire(
+                'Blocked!',
+              ).then((resp)=>{
+                if(resp){
+                  location.reload()
+                }
+              })
+            }
+          }
+        })
+      }
+    })
+  }
+</script>

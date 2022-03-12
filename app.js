@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-const { engine:hbs } = require('express-handlebars');
+const { engine: hbs } = require('express-handlebars');
 var path = require('path');
 require('dotenv').config()
 
@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // var handlebars=require('express-handlebars');
-var session =require('express-session')
+var session = require('express-session')
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 
@@ -18,14 +18,15 @@ var adminRouter = require('./routes/admin');
 var app = express();
 
 
-var fileupload=require('express-fileupload')
+var fileupload = require('express-fileupload')
 app.use(fileupload())
 // const {engine:hbs}=require('express-handlebars')
 
 
-var db=require('./config/connection');
+var db = require('./config/connection');
 const { throws } = require('assert');
-      
+const fileUpload = require('express-fileupload');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set("views", "./views");
@@ -38,7 +39,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:"Key",cookie:{maxAge:7000000}}))
+// app.use(session({secret:"Key",cookie:{maxAge:7000000}}))
+
+app.use(session({
+  secret: "Key",
+  resave: false,
+  saveUninitialized: true,
+})
+)
 // app.use(session({
 //   secret:'key',
 //   resave:false,
@@ -46,26 +54,26 @@ app.use(session({secret:"Key",cookie:{maxAge:7000000}}))
 //   cookie:{secure:true}    
 // }))
 app.use('/', userRouter);
-app.use('/admin', adminRouter);  
+app.use('/admin', adminRouter);
 
-   
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-db.connect((err)=>{
-  if(err){
-    
-    console.log("database connection Err"+err);
-  }else{
+db.connect((err) => {
+  if (err) {
+
+    console.log("database connection Err" + err);
+  } else {
     console.log("database connected");
-    
+
   }
 })
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -33,26 +33,29 @@
 									<h6 id="proName">{{this.proName}}</h6>
 									<div class="price">
 										<h6 class="price">₹{{this.price}}</h6>
+										{{#if this.offer}}
 										<h6 class="l-through"
 											style="font-family: 'Font Awesome 5 Free';color: #878787;">
 											₹{{this.landingCost}}</h6>
 										{{#if this.offerPercentage}}
 										<span class="offerShow">{{this.offerPercentage}}%</span>
 										{{/if}}
+										{{/if}}
+
 
 									</div>
 								</div>
 								<div class="prd-bottom">
 									<a href="/buyNow/{{this._id}}"><button type="button" class="btn btn-warning"
-										style="margin-bottom: 1.1rem;">BuyNow</button></a>
+											style="margin-bottom: 1.1rem;">BuyNow</button></a>
 
-									<a href="/add-to-cart/{{this._id}}" class="social-info">
+									<a onclick="addToCart('{{this._id}}')"  class="social-info">
 										<span class="ti-bag"></span>
 
 										{{!-- <button class="ti-bag" onclick="addToCart('{{this._id}}')"></button> --}}
 										<p class="hover-text">add to bag</p>
 									</a>
-									<a href="/add-to-wish/{{this._id}}" class="social-info">
+									<a onclick="addToWhishList('{{this._id}}')" class="social-info">
 										<span class="lnr lnr-heart"></span>
 										<p class="hover-text">Wishlist</p>
 									</a>

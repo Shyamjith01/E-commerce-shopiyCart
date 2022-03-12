@@ -1,17 +1,63 @@
-
 <div class="container">
-<div  class="login-setup-section col-lg-6" style="margin-top: 11rem;margin-bottom: 9rem;">
+    <div class="login-setup-section col-lg-6" style="margin-top: 11rem;margin-bottom: 9rem;">
         <form action="/otp" method="post">
-        {{#if errOtp}}
-        <h6 style="color: red;">invalid Otp</h6>
-        {{/if}}
-        <h3 class="request-otp-header">Verify OTP</h3>
-        <div class="form-group login-label">
-            <label for="inputnumber">One Time Password</label>
-            <input type="number" class="form-control input-edit" placeholder='Enter OTP' id="number" name="otp" value="{Otp}">
-            <label class="pull-right resend-otp">Resend otp</label>
-        </div>
-        <input type="submit" value="Verify" class="otpVerifyBtn btn btn-default btn-lg btn-block request-otp">   
+            {{#if errOtp}}
+            <h6 style="color: red;">invalid Otp</h6>
+            {{/if}}
+            <h3 class="request-otp-header">Verify OTP</h3>
+            <div class="form-group login-label">
+                <label for="inputnumber">One Time Password</label>
+                <div><span id="timer"></span></div>
+                <input type="number" class="form-control input-edit" placeholder='Enter OTP' id="number" name="otp"
+                    value="{Otp}">
+
+                <label class="pull-right resend-otp">Resend otp</label>
+            </div>
+            <input type="submit" value="Verify" class="otpVerifyBtn btn btn-default btn-lg btn-block request-otp">
         </form>
+    </div>
 </div>
-</div>
+
+<style>
+    #timer {
+        color: #c74032;
+        font-weight: 600;
+        font-size: 12px;
+        display: flex;
+        justify-content: end;
+        padding-right: 6px;
+    }
+</style>
+
+
+<script>
+    let timerOn = true;
+
+    function timer(remaining) {
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        document.getElementById('timer').innerHTML = m + ':' + s;
+        remaining -= 1;
+
+        if (remaining >= 0 && timerOn) {
+            setTimeout(function () {
+                timer(remaining);
+            }, 1000);
+            return;
+        }
+
+        if (!timerOn) {
+            // Do validate stuff here
+            return;
+        }
+
+        // Do timeout stuff here
+        alert('Timeout for otp');
+    }
+
+    timer(60);
+
+</script>

@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="cat-offer col-lg-4">
-                <h3 style="padding: 10px;">Product Offer</h3>
+                <h3 style="padding: 10px;">Add Product Offer</h3>
                 <form action="/admin/productOffer" method="post">
-                    <label>category</label>
+                    <label>products</label>
                     <select class="form-select" id="category" name="proName" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option selected>select product</option>
                         {{#each products}}
                         <option value="{{this.proName}}">{{this.proName}}</option>
                         {{/each}}
@@ -29,31 +29,78 @@
 
                 </form>
             </div>
-            <div class="offerList col-lg-8">
-                <table class="rwd-table" style="width: 100%;">
-                    <tr>
-                        <th>category</th>
-                        <th>starting Date</th>
-                        <th>Expiry Date</th>
-                        <th>Percentage</th>
-                        <th>option</th>
-                        
-                    </tr>
-                    {{#each productOffer}}
-                    <tr>
-                    <td>{{this.proName}}</td>
-                    <td>{{this.startingDate}}</td>
-                    <td>{{this.expiry}}</td>
-                    <td>{{this.offerPercentage}}</td>
-                    <td><a href="/admin/deleteproductOffer/{{this._id}}"><span class="material-icons">delete</span></a></td>
-                    </tr>
-                    {{/each}}
 
-                    
-                    
+            <div class="col-xl-8 col-lg-8 mb-4 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">product offers</h6>
 
-                </table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+
+                                    <th>category</th>
+                                    <th>starting Date</th>
+                                    <th>Expiry Date</th>
+                                    <th>Percentage</th>
+                                    <th>option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each productOffer}}
+                                <tr>
+
+                                    <td>{{this.proName}}</td>
+                                    <td>{{this.startingDate}}</td>
+                                    <td>{{this.expiry}}</td>
+                                    <td>{{this.offerPercentage}} %</td>
+                                    <td><a onclick="deleteProOffer('{{this._id}}')"><span
+                                                class="material-icons">delete</span></a></td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    function deleteProOffer(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "are you sure to delete the product offer ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/admin/deleteproductOffer/' + id,
+                    method: 'get',
+                    success: (response) => {
+                        if (response.status) {
+                            Swal.fire(
+                                'Deleted!',
+                                'the product offer has been deleted.',
+                                'success'
+                            ).then((resp) => {
+                                if (resp) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+</script>
